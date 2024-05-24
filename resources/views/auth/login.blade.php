@@ -3,6 +3,12 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-5">
+            @if (session('pesan'))
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fas fa-check"></i>{{ session('pesan') }}</h5>
+      </div>
+      @endif
             <div class="card">
                 <div class="card-body">
                     @if(session()->has('success'))
