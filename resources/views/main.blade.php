@@ -83,7 +83,7 @@
 </div>
 
 {{-- modal partisipasi masyarakat --}}
-@include('outer.masyarakat.index')
+@include('outer.index')
 
 {{-- function detil(x){
         console.log(x)
