@@ -38,7 +38,7 @@
                         <td>{{ $data->dirigasi->nama_dirigasi }}</td>
                         {{-- <td>{{ $data->geojson }}</td> --}}
                         <td>{{ $data->koordinat }}</td>
-                        <td><img src="{{ asset('storage/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
+                        <td><img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
                         <td class="text-center">
                           <a href="/admin/bendungs/{{ $data->id }}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
                           <form  action="/admin/bendungs/{{ $data->id }}" method="post" class="d-inline">

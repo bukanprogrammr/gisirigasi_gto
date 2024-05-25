@@ -38,7 +38,7 @@
                         <td>{{ $data->dirigasi->nama_dirigasi }}</td>
                         <td><a href="{{ route('jaringan.download-geojson', $data->id) }}" class="btn btn-primary">Download GeoJSON</a></td>
                         {{-- <td> <a href="{{ route('jaringan.download', $data->id) }}" class="btn btn-primary">Download</a></td> --}}
-                        <td><img src="{{ asset('storage/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
+                        <td><img src="{{ asset('storage/foto-jaringan/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
                         {{-- <td><a href="/admin/jaringans/{{ $data->id }}/download-geojson" class="btn btn-primary">Download GeoJSON</a></td> --}}
                         <td class="text-center">
                           <a href="/admin/jaringans/{{ $data->id }}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>

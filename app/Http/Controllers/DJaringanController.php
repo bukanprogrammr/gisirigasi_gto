@@ -51,7 +51,7 @@ class DJaringanController extends Controller
         $validatedData = $request->validate(
             [
                 'dirigasi_id' => 'required|unique:jaringans,dirigasi_id',
-                'geojson' => 'required',
+                'geojson' => ['file', 'max:6144', 'required', new GeoJsonFile],
                 'foto' => 'image|file|max:1024',
             ],
             [
@@ -67,18 +67,19 @@ class DJaringanController extends Controller
         // }
 
         // Simpan file GeoJSON
-        $geojsonFile = $request->file('geojson');
-        $geojsonFileName = uniqid() . '.' . $geojsonFile->getClientOriginalExtension();
-        $geojsonFilePath = $geojsonFile->storeAs('geojson-jaringan', $geojsonFileName);
-
+        if ($file = $request->file('geojson')) {
+            $newFileName = uniqid() . '.' . $file->getClientOriginalExtension();
+            // Simpan file dan dapatkan path-nya
+            $path = $file->storeAs('public/geojson-jaringan', $newFileName);
+            // Hanya simpan nama file ke dalam database
+            $validatedData['geojson'] = $newFileName;
+        }
         // Simpan foto
-        $fotoFile = $request->file('foto');
-        $fotoFileName = uniqid() . '.' . $fotoFile->getClientOriginalExtension();
-        $fotoFilePath = $fotoFile->storeAs('foto-jaringan', $fotoFileName);
+        if ($request->file('foto')) {
+            $fotoPath = $request->file('foto')->store('public/foto-jaringan');
+            $validatedData['foto'] = basename($fotoPath); // Mengambil hanya nama file
+        }
 
-        // Tambahkan nama file ke dalam data yang akan disimpan
-        $validatedData['geojson'] = $geojsonFilePath;
-        $validatedData['foto'] = $fotoFilePath;
 
         Jaringan::create($validatedData);
 
@@ -125,31 +126,28 @@ class DJaringanController extends Controller
         // Validasi input
         $validatedData = $request->validate([
             'foto' => 'nullable|image', // Opsional: update foto
-            'geojson' => 'nullable|file|max:10240', // Opsional: update GeoJSON
+            'geojson'  => ['file', 'max:6144', new GeoJsonFile], // Opsional: update GeoJSON
         ]);
 
         // Update foto jika ada yang diunggah
-        if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
-            if ($jaringan->foto) {
-                Storage::delete($jaringan->foto);
+        if ($request->hasFile('foto') && $jaringan->foto) {
+            if ($jaringan->foto !== null) {
+                Storage::delete('public/foto-jaringan/' . $jaringan->foto);
             }
-
-            // Simpan foto baru
-            $fotoPath = $request->file('foto')->store('foto-jaringan');
-            $validatedData['foto'] = $fotoPath;
+            $fotoPath = $request->file('foto')->store('public/foto-jaringan');
+            $validatedData['foto'] = basename($fotoPath); // Mengambil hanya nama file
         }
 
-        // Update file GeoJSON jika ada yang diunggah
-        if ($request->hasFile('geojson')) {
-            // Hapus file GeoJSON lama jika ada
-            if ($jaringan->geojson) {
-                Storage::delete($jaringan->geojson);
-            }
+        // Hapus file lama jika ada
+        if ($request->hasFile('geojson') && $jaringan->geojson) {
+            Storage::delete('public/geojson-jaringan/' . $jaringan->geojson); // Hapus file lama dari penyimpanan
+        }
 
-            // Simpan file GeoJSON baru
-            $geojsonPath = $request->file('geojson')->store('geojson-jaringan');
-            $validatedData['geojson'] = $geojsonPath;
+        // Simpan file baru
+        if ($file = $request->file('geojson')) {
+            $newFileName = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/geojson-jaringan', $newFileName);
+            $validatedData['geojson'] = $newFileName;
         }
 
         // Update data jaringan
@@ -169,8 +167,13 @@ class DJaringanController extends Controller
     public function destroy(Jaringan $jaringan)
     {
         if ($jaringan->geojson) {
-            Storage::delete($jaringan->geojson);
+            Storage::delete('public/geojson-jaringan/' . $jaringan->geojson);
         }
+
+        if ($jaringan->foto) {
+            Storage::delete('public/foto-jaringan/' . $jaringan->foto);
+        }
+
         Jaringan::destroy($jaringan->id);
         return redirect('/admin/jaringans')->with('pesan', 'Hapus Data Berhasil!');
     }

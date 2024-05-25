@@ -32,7 +32,7 @@
     
     // tampil area kabkota
     @foreach ($kabkota as $data)
-    $.getJSON("{{ asset('storage/' . $data->geojson) }}", function(data) {
+    $.getJSON("{{ asset('storage/geojson-kabkota/' . $data->geojson) }}", function(data) {
       L.geoJSON(data,{
           style : {
               color : 'black',
@@ -45,7 +45,7 @@
     
     // tampil area sawah
     @foreach ($sawah as $data)
-      $.getJSON("{{ asset('storage/' . $data->geojson) }}", function(data) {
+      $.getJSON("{{ asset('storage/geojson-sawah/' . $data->geojson) }}", function(data) {
       L.geoJSON(data,{
           style : {
               color : 'green',
@@ -57,7 +57,7 @@
     
     // tampil area jaringan
     @foreach ($jaringan as $data)
-      $.getJSON("{{ asset('storage/' . $data->geojson) }}", function(data) {
+      $.getJSON("{{ asset('storage/geojson-jaringan/' . $data->geojson) }}", function(data) {
       L.geoJSON(data,{
           style : {
               color : 'cyan',
@@ -76,7 +76,7 @@
     });
 
     L.marker ([<?= $data->koordinat ?>],{icon: myIcon}).addTo(bendung)
-    .bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:center colspan="2"><img width="150" src="{{ asset('storage/' . $data->foto) }}"</th></tr></thead><tr><td align="center" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Bendungan {{ $data->dirigasi->nama_dirigasi }}</tr></td></tbody></table>');
+    .bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:center colspan="2"><img width="150" src="{{ asset('storage/foto-bendung/' . $data->foto) }}"</th></tr></thead><tr><td align="center" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Bendungan {{ $data->dirigasi->nama_dirigasi }}</tr></td></tbody></table>');
     @endforeach
 
     // tampil marker masalah
@@ -88,7 +88,7 @@
     });
 
     L.marker ([<?= $data->koordinat ?>],{icon: myIcon}).addTo(masyarakat)
-    .bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align: colspan="2"><img width="150" src="{{ asset('storage/' . $data->foto) }}" style="display: block; margin: 0 auto;"></th></tr></thead><tr><td align="justify" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Permasalahan : {{ $data->kritik }}</tr></td></tbody></table>');
+    .bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align: colspan="2"><img width="150" src="{{ asset('storage/foto-masalah' . $data->foto) }}" style="display: block; margin: 0 auto;"></th></tr></thead><tr><td align="justify" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Permasalahan : {{ $data->kritik }}</tr></td></tbody></table>');
     @endforeach
     
 </script>

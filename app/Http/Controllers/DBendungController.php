@@ -54,7 +54,8 @@ class DBendungController extends Controller
             ]
         );
         if ($request->file('foto')) {
-            $validatedData['foto'] = $request->file('foto')->store('foto-bendung');
+            $fotoPath = $request->file('foto')->store('public/foto-bendung');
+            $validatedData['foto'] = basename($fotoPath); // Mengambil hanya nama file
         }
         Bendung::create($validatedData);
 
@@ -104,17 +105,18 @@ class DBendungController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        if ($request->file('foto')) {
-            if ($bendung->foto <> "") {
-                unlink(public_path('storage') . '/' . $bendung->foto);
+        if ($request->hasFile('foto') && $bendung->foto) {
+            if ($bendung->foto !== null) {
+                Storage::delete('public/foto-bendung/' . $bendung->foto);
             }
-            $validatedData['foto'] = $request->file('foto')->store('foto-bendung');
+            $fotoPath = $request->file('foto')->store('public/foto-bendung');
+            $validatedData['foto'] = basename($fotoPath); // Mengambil hanya nama file
         }
 
         Bendung::where('id', $bendung->id)
             ->update($validatedData);
 
-        return redirect('/admin/bendungs')->with('pesan', 'dirigasi Berhasil Diubah!');
+        return redirect('/admin/bendungs')->with('pesan', 'Bendung Berhasil Diubah!');
     }
 
 
@@ -127,7 +129,7 @@ class DBendungController extends Controller
     public function destroy(Bendung $bendung)
     {
         if ($bendung->foto) {
-            Storage::delete($bendung->foto);
+            Storage::delete('public/foto-bendung/' . $bendung->foto);
         }
         Bendung::destroy($bendung->id);
         return redirect('/admin/bendungs')->with('pesan', 'Hapus Data Berhasil!');

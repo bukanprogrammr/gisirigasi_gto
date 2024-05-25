@@ -45,23 +45,25 @@ class DKabkotaController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate(
-            [
-                'nama_kabkota' => 'required',
-                'warna' => 'required',
-                'geojson'  => ['required', 'file', 'max:6144', new GeoJsonFile],
-            ]
-        );
+        $validatedData = $request->validate([
+            'nama_kabkota' => 'required',
+            'warna' => 'required',
+            'geojson' => ['required', 'file', 'max:6144', 'required', new GeoJsonFile],
+        ]);
 
-        if ($file = $request->file('geojson')); {
+        if ($file = $request->file('geojson')) {
             $newFileName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $validatedData['geojson'] = $request->file('geojson')->storeAs('geojson-kabkota', $newFileName);
+            // Simpan file dan dapatkan path-nya
+            $path = $file->storeAs('public/geojson-kabkota', $newFileName);
+            // Hanya simpan nama file ke dalam database
+            $validatedData['geojson'] = $newFileName;
         }
 
         Kabkota::create($validatedData);
 
         return redirect('/admin/kabkotas')->with('pesan', 'Tambah Data Berhasil!');
     }
+
     /**
      * Display the specified resource.
      *
@@ -107,21 +109,20 @@ class DKabkotaController extends Controller
 
         // Hapus file lama jika ada
         if ($request->hasFile('geojson') && $kabkota->geojson) {
-            Storage::delete($kabkota->geojson); // Hapus file lama dari penyimpanan
+            Storage::delete('public/geojson-kabkota/' . $kabkota->geojson); // Hapus file lama dari penyimpanan
         }
 
         // Simpan file baru
         if ($file = $request->file('geojson')) {
             $newFileName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $validatedData['geojson'] = $request->file('geojson')->storeAs('geojson-kabkota', $newFileName);
+            $file->storeAs('public/geojson-kabkota', $newFileName);
+            $validatedData['geojson'] = $newFileName;
         }
 
-        Kabkota::where('id', $kabkota->id)
-            ->update($validatedData);
+        Kabkota::where('id', $kabkota->id)->update($validatedData);
 
         return redirect('/admin/kabkotas')->with('pesan', 'dirigasi Berhasil Diubah!');
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -132,10 +133,16 @@ class DKabkotaController extends Controller
     public function destroy(Kabkota $kabkota)
     {
         if ($kabkota->geojson) {
-            Storage::delete($kabkota->geojson);
+            Storage::delete('public/geojson-kabkota/' . $kabkota->geojson);
         }
         Kabkota::destroy($kabkota->id);
         return redirect('/admin/kabkotas')->with('pesan', 'Hapus Data Berhasil!');
+
+        // // Hapus entitas Kabkota
+        // $kabkota->delete();
+
+        // // Redirect kembali ke halaman admin dengan pesan berhasil
+        // return redirect('/admin/kabkotas')->with('pesan', 'Hapus Data Berhasil!');
     }
 
     public function downloadGeoJson($id)

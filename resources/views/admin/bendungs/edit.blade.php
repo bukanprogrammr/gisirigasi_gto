@@ -15,7 +15,7 @@
             <div class="form-group">
               <label for="foto">Foto</label>
               <input name="foto" type="file" id="foto" class="form-control" onchange="previewImage()" accept="image/jpeg,image/png" value="{{ asset('storage/' .$bendung->foto) }}">
-              <img src="{{ asset('storage/' .$bendung->foto) }}" class="img-preview img-fluid mb-3 col-sm-4">
+              <img src="{{ asset('storage/foto-bendung/' .$bendung->foto) }}" class="img-preview img-fluid mb-3 col-sm-4">
               @error('foto') <small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
