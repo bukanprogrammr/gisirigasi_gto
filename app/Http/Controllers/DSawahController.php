@@ -58,7 +58,8 @@ class DSawahController extends Controller
 
         if ($file = $request->file('geojson')); {
             $newFileName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $validatedData['geojson'] = $request->file('geojson')->storeAs('geojson-sawah', $newFileName);
+            $request->file('geojson')->storeAs('public/geojson-sawah', $newFileName);
+            $validatedData['geojson'] = $newFileName;
         }
 
         Sawah::create($validatedData);
@@ -110,19 +111,20 @@ class DSawahController extends Controller
 
         // Hapus file lama jika ada
         if ($request->hasFile('geojson') && $sawah->geojson) {
-            Storage::delete($sawah->geojson); // Hapus file lama dari penyimpanan
+            Storage::delete('public/geojson-sawah/' . $sawah->geojson); // Hapus file lama dari penyimpanan
         }
 
         // Simpan file baru
         if ($file = $request->file('geojson')) {
             $newFileName = uniqid() . '.' . $file->getClientOriginalExtension();
-            $validatedData['geojson'] = $request->file('geojson')->storeAs('geojson-sawah', $newFileName);
+            $file->storeAs('public/geojson-sawah', $newFileName);
+            $validatedData['geojson'] = $newFileName;
         }
 
         Sawah::where('id', $sawah->id)
             ->update($validatedData);
 
-        return redirect('/admin/sawahs')->with('pesan', 'dirigasi Berhasil Diubah!');
+        return redirect('/admin/sawahs')->with('pesan', 'Ubah Data Berhasil!');
     }
 
     /**
@@ -133,6 +135,9 @@ class DSawahController extends Controller
      */
     public function destroy(Sawah $sawah)
     {
+        if ($sawah->geojson) {
+            Storage::delete('public/geojson-sawah/' . $sawah->geojson);
+        }
         Sawah::destroy($sawah->id);
         return redirect('/admin/sawahs')->with('pesan', 'Hapus Data Berhasil!');
     }
@@ -145,7 +150,7 @@ class DSawahController extends Controller
     public function downloadGeoJson($id)
     {
         $sawah = Sawah::findOrFail($id);
-        $geoJson = $sawah->geojson; // assuming you have a `geo_json` column in your `sawah` table
+        $geoJson = 'public/geojson-sawah/' . $sawah->geojson; // assuming you have a `geo_json` column in your `sawah` table
         $newName = time() . '.geojson';
 
         return Storage::download($geoJson);

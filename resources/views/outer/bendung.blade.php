@@ -38,7 +38,7 @@
           {{-- <td><a href="#" onclick="zoomToCoordinate([<?= $data->koordinat ?>])">{{$data->dirigasi->nama_dirigasi}}</td> --}}
           <td><a href="#" onclick="zoomToCoordinate([<?= $data->koordinat ?>])">{{$data->dirigasi->nama_dirigasi}}</td>
           <td><a href="https://www.google.com/maps/search/?api=1&query={{ $data->koordinat }}" target="_blank">{{ $data->koordinat }}</a></td>
-          <td><img src="{{ asset('storage/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
+          <td><img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
         </tr>
         @endforeach
       </tbody>
@@ -95,7 +95,7 @@ $(function() {
             
             // tampil area kecamatan
             @foreach ($kabkota as $data)
-            $.getJSON("{{ asset('storage/' . $data->geojson) }}", function(data) {
+            $.getJSON("{{ asset('storage/geojson-kabkota/' . $data->geojson) }}", function(data) {
             L.geoJSON(data,{
                 style : {
                     color : 'black',
@@ -114,7 +114,7 @@ $(function() {
             });
 
             L.marker ([<?= $data->koordinat ?>],{icon: myIcon}).addTo(map)
-          .bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align: colspan="2"><img width="150" src="{{ asset('storage/' . $data->foto) }}"</th></tr></thead><tr><td align="center" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Bendung {{ $data->dirigasi->nama_dirigasi }}</tr></td></tbody></table>');
+          .bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align: colspan="2"><img width="150" src="{{ asset('storage/foto-bendung/' . $data->foto) }}"</th></tr></thead><tr><td align="center" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Bendung {{ $data->dirigasi->nama_dirigasi }}</tr></td></tbody></table>');
           @endforeach
 
 

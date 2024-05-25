@@ -84,7 +84,7 @@ class DMasaController extends Controller
             if ($masyarakat->foto <> "") {
                 unlink(public_path('storage') . '/' . $masyarakat->foto);
             }
-            $validatedData['foto'] = $request->file('foto')->store('foto-masalah');
+            $validatedData['foto'] = $request->file('foto')->store('foto-masyarakat');
         }
 
         Masyarakat::where('id', $masyarakat->id)
@@ -102,9 +102,9 @@ class DMasaController extends Controller
     public function destroy(Masyarakat $masyarakat)
     {
         if ($masyarakat->foto) {
-            Storage::delete($masyarakat->foto);
+            Storage::delete('public/foto-masalah/' . $masyarakat->foto);
         }
         Masyarakat::destroy($masyarakat->id);
-        return redirect('/masyarakats')->with('pesan', 'Hapus Data Berhasil!');
+        return redirect('/admin/masyarakats')->with('pesan', 'Hapus Data Berhasil!');
     }
 }

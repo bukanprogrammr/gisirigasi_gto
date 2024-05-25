@@ -153,7 +153,7 @@ class DJaringanController extends Controller
         // Update data jaringan
         $jaringan->update($validatedData);
 
-        return redirect('/admin/jaringans')->with('pesan', 'Dirigasi Berhasil Diubah!');
+        return redirect('/admin/jaringans')->with('pesan', 'Ubah Data Berhasil!');
     }
 
 
@@ -186,7 +186,7 @@ class DJaringanController extends Controller
     public function downloadGeoJson($id)
     {
         $jaringan = Jaringan::findOrFail($id);
-        $geoJson = $jaringan->geojson; // assuming you have a `geo_json` column in your `jaringan` table
+        $geoJson = 'public/geojson-jaringan/' . $jaringan->geojson; // assuming you have a `geo_json` column in your `jaringan` table
         $newName = time() . '.geojson';
 
         return Storage::download($geoJson);

@@ -37,7 +37,7 @@
             {{-- <td><a href="#" class="zoom-geojson-link" data-geojson="{{ asset('storage/' . $data->geojson) }}">{{ $data->dirigasi->nama_dirigasi }}</a></td> --}}
             <td>{{ $data->dirigasi->nama_dirigasi }}</td>
             <td>{{ $data->luas }}</td>
-            <td><img src="{{asset('storage/' . $data->foto)}}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
+            <td><img src="{{asset('storage/foto-jaringan/' . $data->foto)}}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
           </tr>
           @endforeach
         </tbody>
@@ -92,7 +92,7 @@
             
             // tampil area kabkota
             @foreach ($kabkota as $data)
-            $.getJSON("{{ asset('storage/' . $data->geojson) }}", function(data) {
+            $.getJSON("{{ asset('storage/geojson-kabkota/' . $data->geojson) }}", function(data) {
             L.geoJSON(data,{
                 style : {
                     color : 'black',
@@ -104,13 +104,13 @@
             @endforeach
             
             @foreach ($jaringan as $data)
-            $.getJSON("{{ asset('storage/' . $data->geojson) }}", function(data) {
+            $.getJSON("{{ asset('storage/geojson-jaringan/' . $data->geojson) }}", function(data) {
             L.geoJSON(data,{
                 style : {
                     color : 'cyan',
                     fillOpacity : 3
                 }
-          }).addTo(map).bindPopup("Jaringan Irigasi {{ $data->dirigasi->nama_dirigasi }}");
+          }).addTo(map).bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align: colspan="2"><img width="150" src="{{ asset('storage/foto-jaringan/' . $data->foto) }}"</th></tr></thead><tr><td align="center" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Jaringan Irigasi {{ $data->dirigasi->nama_dirigasi }}</tr></td></tbody></table>');
         });
             @endforeach
 

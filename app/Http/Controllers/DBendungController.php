@@ -116,7 +116,7 @@ class DBendungController extends Controller
         Bendung::where('id', $bendung->id)
             ->update($validatedData);
 
-        return redirect('/admin/bendungs')->with('pesan', 'Bendung Berhasil Diubah!');
+        return redirect('/admin/bendungs')->with('pesan', 'Ubah Data Berhasil!');
     }
 
 

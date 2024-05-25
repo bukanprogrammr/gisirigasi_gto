@@ -88,7 +88,7 @@
             
             // tampil area kecamatan
             @foreach ($kabkota as $data)
-            $.getJSON("{{ asset('storage/' . $data->geojson) }}", function(data) {
+            $.getJSON("{{ asset('storage/geojson-kabkota/' . $data->geojson) }}", function(data) {
             L.geoJSON(data,{
                 style : {
                     color : 'black',
@@ -100,7 +100,7 @@
             @endforeach
             
             @foreach ($sawah as $data)
-            $.getJSON("{{ asset('storage/' . $data->geojson) }}", function(data) {
+            $.getJSON("{{ asset('storage/geojson-sawah/' . $data->geojson) }}", function(data) {
             L.geoJSON(data,{
                 style : {
                     color : 'green',

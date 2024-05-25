@@ -25,8 +25,8 @@
         <p class="text-muted well well-sm shadow-none" style="margin-top: 10px; margin-right: 10px;"> {{ $masyarakat->kritik }} </p>
       </div>
       <div class="col-md-6 offset-md-3 text-center">
-        <a href="{{ asset('storage/' . $masyarakat->foto) }}">
-          <img src="{{ asset('storage/' . $masyarakat->foto) }}" class="rounded img-fluid" >
+        <a href="{{ asset('storage/foto-masalah/' . $masyarakat->foto) }}">
+          <img src="{{ asset('storage/foto-masalah/' . $masyarakat->foto) }}" class="rounded img-fluid" >
         </a>
       </div>
     </div>

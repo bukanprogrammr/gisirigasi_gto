@@ -71,7 +71,7 @@
     @if ($data->tanggapan !== null)
     <div class="text-center">
         <div class="card text-center col-lg-10 mx-auto mt-4" role="button"> 
-            <img src="{{ asset('storage/' . $data->foto) }}" class="rounded">
+            <img src="{{ asset('storage/foto-masalah/' . $data->foto) }}" class="rounded">
             <div class="card-body">
                 <h5 class="card-text">Dari: <strong>{{ $data->nama }}</strong></h5>
                 <button class="btn bg-lightblue detail-button" data-nama="{{ $data->nama }}" data-kritik="{{ $data->kritik }}" data-koordinat="{{ $data->koordinat }}" data-tanggapan="{{ $data->tanggapan }}" data-foto="{{ $data->foto }}">Detail</button>
@@ -136,7 +136,7 @@ function detil(data) {
         document.getElementById("detail_kritik").innerText = data.kritik;
         document.getElementById("detail_koordinat").innerText = data.koordinat;
         document.getElementById("detail_tanggapan").innerText = data.tanggapan;
-        document.getElementById("detail_foto").src = "{{ asset('storage/') }}" + "/" + data.foto;
+        document.getElementById("detail_foto").src = "{{ asset('storage/foto-masalah/') }}" + "/" + data.foto;
 
         $('#modal_detail_pengaduan').modal('show');
     }

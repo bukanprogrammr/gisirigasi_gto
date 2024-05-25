@@ -121,7 +121,7 @@ class DKabkotaController extends Controller
 
         Kabkota::where('id', $kabkota->id)->update($validatedData);
 
-        return redirect('/admin/kabkotas')->with('pesan', 'dirigasi Berhasil Diubah!');
+        return redirect('/admin/kabkotas')->with('pesan', 'Ubah Data Berhasil!');
     }
 
     /**
@@ -148,7 +148,7 @@ class DKabkotaController extends Controller
     public function downloadGeoJson($id)
     {
         $kabkota = Kabkota::findOrFail($id);
-        $geoJson = $kabkota->geojson; // assuming you have a `geo_json` column in your `kabkota` table
+        $geoJson = 'public/geojson-kabkota/' . $kabkota->geojson; // assuming you have a `geo_json` column in your `kabkota` table
         $newName = time() . '.geojson';
 
         return Storage::download($geoJson);

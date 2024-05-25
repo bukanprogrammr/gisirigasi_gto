@@ -14,7 +14,7 @@ class MainController extends Controller
 {
     public function maindirigasi(Dirigasi $dirigasi)
     {
-        return view('outer.dirigasi.index', [
+        return view('outer.dirigasi', [
             "title" => "Daerah Irigasi",
             "dirigasi" => Dirigasi::all(),
             "kabkota" => Kabkota::all(),
@@ -25,7 +25,7 @@ class MainController extends Controller
 
     public function maindetaildirigasi(Dirigasi $dirigasi)
     {
-        return view('outer.dirigasi.detail', [
+        return view('outer.detaildirigasi', [
             "title" => 'Detail Daerah Irigasi',
             "dirigasi" => $dirigasi,
             'bendung' => $dirigasi->bendung,
@@ -38,7 +38,7 @@ class MainController extends Controller
 
     public function mainkabkota(Kabkota $kabkota)
     {
-        return view('outer.kabkota.index', [
+        return view('outer.kabkota', [
             "title" => "Pemetaan Kab.Kota",
             "kabkota" => Kabkota::all(),
             "dirigasi" => Dirigasi::all()
@@ -47,7 +47,7 @@ class MainController extends Controller
 
     public function mainbendung(Bendung $bendung)
     {
-        return view('outer.bendung.index', [
+        return view('outer.bendung', [
             "title" => "Pemetaan Bendungan",
             "bendung" => Bendung::all(),
             "dirigasi" => $bendung->dirigasi,
@@ -57,7 +57,7 @@ class MainController extends Controller
 
     public function mainjaringan(Jaringan $jaringan)
     {
-        return view('outer.jaringan.index', [
+        return view('outer.jaringan', [
             "title" => "Pemetaan jaringan",
             "jaringan" => Jaringan::all(),
             "dirigasi" => $jaringan->dirigasi,
@@ -69,7 +69,7 @@ class MainController extends Controller
 
     public function mainsawah(Sawah $sawah)
     {
-        return view('outer.sawah.index', [
+        return view('outer.sawah', [
             "title" => "Pemetaan Sawah",
             "sawah" => Sawah::all(),
             "dirigasi" => $sawah->kabkota,
@@ -100,7 +100,8 @@ class MainController extends Controller
             ]
         );
         if ($request->file('foto')) {
-            $validatedData['foto'] = $request->file('foto')->store('foto-masalah');
+            $pathFoto = $request->file('foto')->store('public/foto-masalah');
+            $validatedData['foto'] = basename($pathFoto);
         }
         Masyarakat::create($validatedData);
 
