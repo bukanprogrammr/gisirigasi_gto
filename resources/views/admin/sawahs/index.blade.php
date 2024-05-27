@@ -24,7 +24,7 @@
                     <tr>
                         <th width="30px">No</th>
                         <th>Kab./Kota</th>
-                        <th>Geojson</th>
+                        {{-- <th>Geojson</th> --}}
                         {{-- <th>DGeojson</th> --}}
                         <th>Aksi</th>
                     </tr>
@@ -36,7 +36,7 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $data->kabkota->nama_kabkota }}</td>
                         {{-- <td> <a href="{{ route('sawah.download', $data->id) }}" class="btn btn-primary">Download</a></td> --}}
-                        <td><a href="{{ route('sawah.download-geojson', $data->id) }}" class="btn btn-primary">Download GeoJSON</a></td>
+                        {{-- <td><a href="{{ route('sawah.download-geojson', $data->id) }}" class="btn btn-primary">Download GeoJSON</a></td> --}}
                         {{-- <td><a href="/admin/sawahs/{{ $data->id }}/download-geojson" class="btn btn-primary">Download GeoJSON</a></td> --}}
                         <td class="text-center">
                           <a href="/admin/sawahs/{{ $data->id }}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>

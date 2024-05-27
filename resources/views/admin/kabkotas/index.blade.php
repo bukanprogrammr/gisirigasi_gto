@@ -26,7 +26,7 @@
                         <th>Nama</th>
                         <th>Warna</th>
                         <th>Daerah Irigasi</th>
-                        <th>Geojson</th>
+                        {{-- <th>Geojson</th> --}}
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -42,7 +42,7 @@
                           - {{ $item->nama_dirigasi }} <br>
                           @endforeach
                         </td>
-                        <td><a href="{{ route('kabkota.download-geojson', $data->id) }}" class="btn btn-primary">Download GeoJSON</a></td>
+                        {{-- <td><a href="{{ route('kabkota.download-geojson', $data->id) }}" class="btn btn-primary">Download GeoJSON</a></td> --}}
                         <td class="text-center">
                           <a href="/admin/kabkotas/{{ $data->id }}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
                           <form  action="/admin/kabkotas/{{ $data->id }}" method="post" class="d-inline">

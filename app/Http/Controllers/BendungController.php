@@ -27,5 +27,4 @@ class BendungController extends Controller
             "dirigasi" => Dirigasi::all()
         ]);
     }
-
 }
