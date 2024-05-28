@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             'id' => '1',
             'nama_kabkota' => 'Kota Gorontalo',
             'warna' => '#A1FDFD',
-            'geojson' => '662a0743a9641.geojson',
+            'geojson' => '665535efca240.geojson',
         ]);
         Kabkota::create([
             'id' => '2',
@@ -210,20 +210,26 @@ class DatabaseSeeder extends Seeder
 
         //sawah
         Sawah::create([
-            'kabkota_id' => '3',
-            'geojson' => '66257c51bfe7e.geojson',
-            // 'foto' => ''
-        ]);
-
-        Sawah::create([
             'kabkota_id' => '1',
-            'geojson' => '66257fb05ec9b.geojson',
+            'geojson' => '66553f5da106d.geojson',
             // 'foto' => ''
         ]);
 
         Sawah::create([
             'kabkota_id' => '3',
-            'geojson' => '66257fb05ec9b.geojson',
+            'geojson' => '66553f70999b9.geojson',
+            // 'foto' => ''
+        ]);
+
+        Sawah::create([
+            'kabkota_id' => '5',
+            'geojson' => '66553f8906557.geojson',
+            // 'foto' => ''
+        ]);
+
+        Sawah::create([
+            'kabkota_id' => '2',
+            'geojson' => '66553f7d8fea2.geojson',
             // 'foto' => ''
         ]);
 
@@ -290,7 +296,7 @@ class DatabaseSeeder extends Seeder
 
         Jaringan::create([
             'dirigasi_id' => '11',
-            'geojson' => '663168d5499f4.geojson',
+            'geojson' => '66553a693d5ad.geojson',
             // 'foto' => ''
         ]);
 
@@ -324,7 +330,7 @@ class DatabaseSeeder extends Seeder
             'no_hp' => '0846034543763',
             'koordinat' => '1.0185966120543994, 122.15465232279504',
             'foto' => 'InuIFcfWU4RxIUoOBeKwUjI06TAzxgWotHKbyo4p.jpg',
-            'kritik' => 'Pohon tumbang sup kase bae kamari dlu pipa so bocorrr',
+            'kritik' => 'Pohon tumbang tolong diperbaiki',
             'tanggapan' => ''
         ]);
 
@@ -335,7 +341,7 @@ class DatabaseSeeder extends Seeder
             'no_hp' => '045453473763',
             'koordinat' => '0.66706636587162, 122.55339391262616',
             'foto' => 'xelCkBG963uEpjzWv9hHaEfmrqzKfDrgEDi5y0tg.jpg',
-            'kritik' => 'Tabulo Bermasalah tolong segera diperbaiki uwticchhh',
+            'kritik' => 'Saluran tersumbat sampah',
             'tanggapan' => ''
         ]);
 
@@ -346,7 +352,7 @@ class DatabaseSeeder extends Seeder
             'no_hp' => '03434303473763',
             'koordinat' => '0.5002384768798697, 121.92304867046934',
             'foto' => 'dCxkw6nNkdalFZt7K7uuXOkAnVYP1oTdB1SHL2c9.jpg',
-            'kritik' => 'Kase bae akan dlu ini got syuupp so ta sumbat syuuppp',
+            'kritik' => 'Saluran tersumbat sampah mohon segera ditinjau',
             'tanggapan' => ''
         ]);
 
