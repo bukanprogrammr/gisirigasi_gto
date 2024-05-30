@@ -12,7 +12,7 @@
         </div>
         <div class="card">
           <div class="card-body ">
-                  <div id="map" style="width: 100%; height: 600px;"></div>
+            <div id="map" style="width: 100%; height: 600px; z-index: 0;"></div>
               </div>
           </div>  
       </div>
@@ -59,6 +59,8 @@
         </div>
   </div>
 </section>
+
+@include('layouts.footer')
 
 <script>
 

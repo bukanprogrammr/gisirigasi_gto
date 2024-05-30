@@ -49,7 +49,7 @@ class MainController extends Controller
     public function mainjaringan(Jaringan $jaringan)
     {
         return view('outer.jaringan', [
-            "title" => "Pemetaan jaringan",
+            "title" => "Pemetaan Jaringan Irigasi",
             "jaringan" => Jaringan::all(),
             "dirigasi" => $jaringan->dirigasi,
             "kabkota" => Kabkota::all(),

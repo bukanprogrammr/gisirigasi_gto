@@ -65,9 +65,11 @@
       <div class="row">
         <div class="col-xl-3 col-lg-3 col-sm-6">
           <div class="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
+              <a href="/dirigasi">
             <div class="ud-feature-icon">
-              <i class="fas fa-draw-polygon"></i>
+                <i class="fas fa-draw-polygon"></i>
             </div>
+        </a>
             <div class="ud-feature-content">
               <h3 class="ud-feature-title">Daerah Irigasi</h3>
               <p class="ud-feature-desc">
@@ -81,9 +83,11 @@
         </div>
         <div class="col-xl-3 col-lg-3 col-sm-6">
           <div class="ud-single-feature wow fadeInUp" data-wow-delay=".15s">
+              <a href="/bendung">
             <div class="ud-feature-icon">
-              <i class="fab fa-simplybuilt"></i>
+                <i class="fab fa-simplybuilt"></i>
             </div>
+        </a>
             <div class="ud-feature-content">
               <h3 class="ud-feature-title">Bendung</h3>
               <p class="ud-feature-desc">
@@ -97,9 +101,11 @@
         </div>
         <div class="col-xl-3 col-lg-3 col-sm-6">
           <div class="ud-single-feature wow fadeInUp" data-wow-delay=".2s">
+              <a href="/jaringan">
             <div class="ud-feature-icon">
-              <i class="fas fa-water"></i>
+                <i class="fas fa-water"></i>
             </div>
+        </a>
             <div class="ud-feature-content">
               <h3 class="ud-feature-title">Jaringan Irigasi</h3>
               <p class="ud-feature-desc">
@@ -112,10 +118,12 @@
           </div>
         </div>
         <div class="col-xl-3 col-lg-3 col-sm-6">
-          <div class="ud-single-feature wow fadeInUp" data-wow-delay=".25s">
-            <div class="ud-feature-icon">
-              <i class="fab fa-pagelines"></i>
+            <div class="ud-single-feature wow fadeInUp" data-wow-delay=".25s">
+                <a href="/sawah">
+              <div class="ud-feature-icon">
+                <i class="fab fa-pagelines"></i>
             </div>
+        </a>
             <div class="ud-feature-content">
               <h3 class="ud-feature-title">Sawah</h3>
               <p class="ud-feature-desc">
@@ -137,12 +145,13 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="ud-section-title mx-auto text-center">
-            <h2>Partisipasi Masyarakat</h2>
+              <h2>Partisipasi Masyarakat</h2>
+              <button class="btn btn-warning btn-lg" data-toggle="modal" data-target=".modal_partisipasi_masyarakat"><i class="fas fa-bullhorn"></i>  Form Pengaduan</button>
             <p>
               There are many variations of passages of Lorem Ipsum available
               but the majority have suffered alteration in some form.
             </p>
-          </div>
+        </div>
         </div>
       </div>
 
@@ -179,5 +188,45 @@
     </div>
     </div>
   </section>
+  @include('layouts.footer')
+  <script>
+         // ==== for menu scroll
+         const pageLink = document.querySelectorAll(".ud-menu-scroll");
+
+pageLink.forEach((elem) => {
+  elem.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.querySelector(elem.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+      offsetTop: 1 - 60,
+    });
+  });
+});
+
+// section menu active
+function onScroll(event) {
+  const sections = document.querySelectorAll(".ud-menu-scroll");
+  const scrollPos =
+    window.pageYOffset ||
+    document.documentElement.scrollTop ||
+    document.body.scrollTop;
+
+  for (let i = 0; i < sections.length; i++) {
+    const currLink = sections[i];
+    const val = currLink.getAttribute("href");
+     {
+      document
+        .querySelector(".ud-menu-scroll")
+        .classList.remove("active");
+      currLink.classList.add("active");
+    } else {
+      currLink.classList.remove("active");
+    }
+  }
+}
+
+window.document.addEventListener("scroll", onScroll);
+
+  </script>
 
 @endsection

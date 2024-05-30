@@ -2,49 +2,61 @@
 
 @section('content')
 
-<div class="card">
-  <div class="card-header" style="background-color: #00badb;">
-      {{ $title }}
-  </div>
-  <div class="card-body">
-          <div id="map" style="width: 100%; height: 600px;"></div>
+<!-- ====== Banner Start ====== -->
+<section class="ud-page-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-banner-content">
+          <h1>{{ $title }}</h1>
+        </div>
+        <div class="card">
+          <div class="card-body ">
+            <div id="map" style="width: 100%; height: 600px; z-index: 0;"></div>
+              </div>
+          </div>  
       </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header" style="background-color: #00badb;">
-      <h3 class="card-title">Data {{ $title }}</h3>
-      <!-- /.card-tools -->
     </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-
-      <table id="tabel1" class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th width="30px">No</th>
-            <th>Daerah Irigasi</th>
-            <th>Luas</th>
-            <th>Foto</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <?php $no = 1; ?>
-          @foreach ($jaringan as $data)
-          <tr>
-            <td>{{ $no++ }}</td>
-            {{-- <td><a href="#" class="zoom-geojson-link" data-geojson="{{ asset('storage/' . $data->geojson) }}">{{ $data->dirigasi->nama_dirigasi }}</a></td> --}}
-            <td>{{ $data->dirigasi->nama_dirigasi }}</td>
-            <td>{{ $data->luas }}</td>
-            <td><img src="{{asset('storage/foto-jaringan/' . $data->foto)}}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
+    
     </div>
-    <!-- /.card-body -->
+  </section>
+  <!-- ====== Banner End ====== -->
+  
+  <!-- ====== About Start ====== -->
+  <section id="about" class="ud-about">
+    <div class="container">
+      <br>
+        <div class="card card-dark">
+          <!-- /.card-header -->
+          <div class="card-body">
+        
+            <table id="tabel1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th width="30px">No</th>
+                  <th>Daerah Irigasi</th>
+                  <th>Foto</th>
+      
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1; ?>
+                @foreach ($jaringan as $data)
+                <tr>
+                  <td>{{ $no++ }}</td>
+                  {{-- <td><a href="#" class="zoom-geojson-link" data-geojson="{{ asset('storage/' . $data->geojson) }}">{{ $data->dirigasi->nama_dirigasi }}</a></td> --}}
+                  <td>{{ $data->dirigasi->nama_dirigasi }}</td>
+                  <td><img src="{{asset('storage/foto-jaringan/' . $data->foto)}}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
   </div>
+</section>
+@include('layouts.footer')
 
 <script>
   $(function() {

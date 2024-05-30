@@ -11,7 +11,7 @@ class JaringanController extends Controller
     public function index(Jaringan $jaringan)
     {
         return view('outer.jaringan.index', [
-            "title" => "Pemetaan jaringan",
+            "title" => "Pemetaan Jaringan Irigasi",
             "jaringan" => Jaringan::all(),
             "dirigasi" => $jaringan->dirigasi,
             "kabkota" => Kabkota::all(),
