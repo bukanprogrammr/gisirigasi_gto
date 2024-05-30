@@ -60,6 +60,7 @@ Route::get('/kabkota', [MainController::class, 'mainkabkota']);
 Route::get('/bendung', [MainController::class, 'mainbendung']);
 Route::get('/jaringan', [MainController::class, 'mainjaringan']);
 Route::get('/sawah', [MainController::class, 'mainsawah']);
+Route::get('/coba1', [MainController::class, 'maincoba']);
 // Route::get('/masyarakat', [MainController::class, 'createmasyarakat']);
 Route::post('/smasyarakat', [MainController::class, 'storemasyarakat']);
 

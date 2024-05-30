@@ -14,10 +14,18 @@
     var map = L.map('map', {
         center: [0.7163124374861523, 122.40620802112356],
         zoom: 10,
+        minZoom : 10,
         layers: [peta1, kabkota, sawah, jaringan, bendung, masyarakat,
         
     ]
     });
+
+    // Disable dragging
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.boxZoom.disable();
+    map.keyboard.disable();
     
     var overlayer = {
         "Kabkota" : kabkota,

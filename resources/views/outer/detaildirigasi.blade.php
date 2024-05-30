@@ -78,7 +78,7 @@
                 <div class="card-body">
                     <p class="card-description font-weight-bold">Info Bendung</p>
                     @if ($data->foto)
-                    <img src="{{ asset('storage/' . $data->foto) }}" class="img-fluid" alt="Foto Bendung">
+                    <img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" alt="Foto Bendung">
                     @else
                     <p>Foto belum ada</p>
                     @endif
@@ -107,7 +107,7 @@
                 <div class="card-body">
                     <p class="card-description font-weight-bold">Info jaringan</p>
                     @if ($data->foto)
-                    <img src="{{ asset('storage/' . $data->foto) }}" class="img-fluid" alt="Foto jaringan">
+                    <img src="{{ asset('storage/foto-jaringan/' . $data->foto) }}" class="img-fluid" alt="Foto jaringan">
                     @else
                     <p>Belum ada foto</p>
                     @endif
@@ -219,7 +219,7 @@ function toggleCard(cardId) {
             
             // tampil area kabkota
             @foreach ($kabkota as $data)
-            $.getJSON("{{ asset('storage/' . $data->geojson) }}", function(data) {
+            $.getJSON("{{ asset('storage/geojson-kabkota/' . $data->geojson) }}", function(data) {
              L.geoJSON(data,{
                 style : {
                     color : 'black',
@@ -232,7 +232,7 @@ function toggleCard(cardId) {
             
             // tampil area jaringan
             @foreach ($jaringan as $data)
-$.getJSON("{{ asset('storage/'. $data->geojson) }}", function(data) {
+$.getJSON("{{ asset('storage/geojson-jaringan/'. $data->geojson) }}", function(data) {
   var layer = L.geoJSON(data, {
     style: {
       color: 'cyan',
@@ -258,7 +258,7 @@ $.getJSON("{{ asset('storage/'. $data->geojson) }}", function(data) {
             });
 
             L.marker ([<?= $data->koordinat ?>],{icon: myIcon}).addTo(map)
-          .bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align: colspan="2"><img width="150" src="{{ asset('storage/' . $data->foto) }}"</th></tr></thead><tr><td align="center" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Bendung {{ $data->dirigasi->nama_dirigasi }}</tr></td></tbody></table>');
+          .bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align: colspan="2"><img width="150" src="{{ asset('storage/foto-bendung/' . $data->foto) }}"</th></tr></thead><tr><td align="center" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Bendung {{ $data->dirigasi->nama_dirigasi }}</tr></td></tbody></table>');
           @endforeach
 
           </script>

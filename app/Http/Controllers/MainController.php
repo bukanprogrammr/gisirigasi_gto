@@ -36,15 +36,6 @@ class MainController extends Controller
         ]);
     }
 
-    public function mainkabkota(Kabkota $kabkota)
-    {
-        return view('outer.kabkota', [
-            "title" => "Pemetaan Kab.Kota",
-            "kabkota" => Kabkota::all(),
-            "dirigasi" => Dirigasi::all()
-        ]);
-    }
-
     public function mainbendung(Bendung $bendung)
     {
         return view('outer.bendung', [
