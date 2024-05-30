@@ -1,5 +1,56 @@
 @extends('layouts.frontend')
 @section('content')
+
+{{-- hero --}}
+<section class="ud-hero" id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
+          <h1 class="ud-hero-title">
+            Sistem Informasi Geografis Daerah Irigasi Provinsi Gorontalo
+          </h1>
+          <p class="ud-hero-desc">
+            Visualisasi Data Daerah Irigasi Melalui Pemetaan Sederhana.
+          </p>
+          <ul class="ud-hero-buttons">
+            <li>
+              <a href="/map" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
+                Map
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/uideck/play-bootstrap" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-link-btn">
+                Selengkapnya <i class="lni lni-arrow-right"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="ud-hero-brands-wrapper wow fadeInUp"
+          data-wow-delay=".3s"
+        >
+          <img src="{{ asset('play-bootstrap-main') }}/assets/images/hero/brand.svg" alt="brand" />
+        </div>
+        <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
+          <img src="{{ asset('play-bootstrap-main') }}/assets/images/hero/background.png" alt="hero-image" class="rounded"/>
+          <img
+            src="{{ asset('play-bootstrap-main') }}/assets/images/hero/dotted-shape.svg"
+            alt="shape"
+            class="shape shape-1"
+          />
+          <img
+            src="{{ asset('play-bootstrap-main') }}/assets/images/hero/dotted-shape.svg"
+            alt="shape"
+            class="shape shape-2"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{-- fitur --}}
 <section id="features" class="ud-features">
     <div class="container">
       <div class="row">
@@ -22,7 +73,7 @@
               <p class="ud-feature-desc">
                 Lorem Ipsum is simply dummy text of the printing and industry.
               </p>
-              <a href="javascript:void(0)" class="ud-feature-link">
+              <a href="/dirigasi" class="ud-feature-link">
                 Learn More
               </a>
             </div>
@@ -79,4 +130,54 @@
       </div>
     </div>
   </section>
+
+  {{-- partisipasimasyarakat --}}
+  <section id="team" class="ud-team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ud-section-title mx-auto text-center">
+            <h2>Partisipasi Masyarakat</h2>
+            <p>
+              There are many variations of passages of Lorem Ipsum available
+              but the majority have suffered alteration in some form.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+      <div class="multiple-items">
+        @foreach ($masyarakat as $data)
+        <div class="col-xl-3 col-lg-3 col-sm-6">
+          <div class="ud-single-team wow fadeInUp" data-wow-delay=".2s">
+            <div class="ud-team-image-wrapper">
+              <div class="ud-team-image">
+                <img src="{{ asset('storage/foto-masalah/' . $data->foto) }}" alt="team" />
+              </div>
+
+              <img
+                src="{{ asset('play-bootstrap-main') }}/assets/images/team/dotted-shape.svg"
+                alt="shape"
+                class="shape shape-1"
+              />
+              <img
+                src="{{ asset('play-bootstrap-main') }}/assets/images/team/shape-2.svg"
+                alt="shape"
+                class="shape shape-2"
+              />
+            </div>
+            <div class="ud-team-info">
+              <h5>{{ $data->nama }}</h5>
+              <button class="ud-main-btn ud-border-btn detail-button" data-nama="{{ $data->nama }}" data-kritik="{{ $data->kritik }}" data-koordinat="{{ $data->koordinat }}" data-tanggapan="{{ $data->tanggapan }}" data-foto="{{ $data->foto }}">Detail</button>
+            </div>
+          </div>
+        </div>                               
+        @endforeach
+      </div>
+      @include('outer.index')
+    </div>
+    </div>
+  </section>
+
 @endsection

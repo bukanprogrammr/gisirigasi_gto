@@ -2,50 +2,64 @@
 
 @section('content')
 
-<div class="card">
-  <div class="card-header bg-dark text-light">
-      {{ $title }}
-  </div>
-  <div class="card-body ">
-          <div id="map" style="width: 100%; height: 600px;"></div>
+<!-- ====== Banner Start ====== -->
+<section class="ud-page-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-banner-content">
+          <h1>{{ $title }}</h1>
+        </div>
+        <div class="card">
+          <div class="card-body ">
+                  <div id="map" style="width: 100%; height: 600px;"></div>
+              </div>
+          </div>  
       </div>
-  </div>
+    </div>
+    
+    </div>
+  </section>
+  <!-- ====== Banner End ====== -->
   
-<div class="card card-dark">
-  <div class="card-header">
-    <h3 class="card-title">Data {{ $title }}</h3>
-    <!-- /.card-tools -->
+  <!-- ====== About Start ====== -->
+  <section id="about" class="ud-about">
+    <div class="container">
+      <br>
+        <div class="card card-dark">
+          <!-- /.card-header -->
+          <div class="card-body">
+        
+            <table id="tabel1" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th width="30px">No</th>
+                  <th>Bendung</th>
+                  {{-- <th>Geojson</th> --}}
+                  <th>Koordinat</th>
+                  <th>Foto</th>
+        
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1; ?>
+                @foreach ($bendung as $data)
+                <tr>
+                  <td>{{ $no++ }}</td>
+                  {{-- <td><a href="#" onclick="zoomToCoordinate([<?= $data->koordinat ?>])">{{$data->dirigasi->nama_dirigasi}}</td> --}}
+                  <td><a href="#" onclick="zoomToCoordinate([<?= $data->koordinat ?>])">{{$data->dirigasi->nama_dirigasi}}</td>
+                  <td><a href="https://www.google.com/maps/search/?api=1&query={{ $data->koordinat }}" target="_blank">{{ $data->koordinat }}</a></td>
+                  <td><img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
   </div>
-  <!-- /.card-header -->
-  <div class="card-body">
+</section>
 
-    <table id="tabel1" class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th width="30px">No</th>
-          <th>Bendung</th>
-          {{-- <th>Geojson</th> --}}
-          <th>Koordinat</th>
-          <th>Foto</th>
-
-        </tr>
-      </thead>
-      <tbody>
-        <?php $no = 1; ?>
-        @foreach ($bendung as $data)
-        <tr>
-          <td>{{ $no++ }}</td>
-          {{-- <td><a href="#" onclick="zoomToCoordinate([<?= $data->koordinat ?>])">{{$data->dirigasi->nama_dirigasi}}</td> --}}
-          <td><a href="#" onclick="zoomToCoordinate([<?= $data->koordinat ?>])">{{$data->dirigasi->nama_dirigasi}}</td>
-          <td><a href="https://www.google.com/maps/search/?api=1&query={{ $data->koordinat }}" target="_blank">{{ $data->koordinat }}</a></td>
-          <td><img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
-  </div>
-  <!-- /.card-body -->
-</div>
 <script>
 
 $(function() {

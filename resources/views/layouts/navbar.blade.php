@@ -4,8 +4,8 @@
   <!-- /.navbar -->
 
   <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="/">
-      <img src="{{ asset('play-bootstrap-main') }}/assets/images/logo/SIDI.png" alt="Logo" >
+    <a class="navbar-branda" href="/">
+      <img src="{{ asset('play-bootstrap-main') }}/assets/images/logo/SIDIG.png" alt="Logo" style="max-height: 8vh; background: transparent;" >
     </a>
     <button class="navbar-toggler">
       <span class="toggler-icon"> </span>
@@ -20,13 +20,13 @@
         </li>
 
         <li class="nav-item">
-          <a class="ud-menu-scroll" href="/map">Map</a>
+          <a class="ud-menu-scroll" href="/map" target="_blank">Map</a>
         </li>
         <li class="nav-item">
-          <a class="ud-menu-scroll" href="/map">Partisipasi Masyarakat</a>
+          <a class="ud-menu-scroll" href="#team">Partisipasi Masyarakat</a>
         </li>
         <li class="nav-item nav-item-has-children">
-          <a href="javascript:void(0)"> Data Irigasi </a>
+          <a href="#"> Data Irigasi </a>
           <ul class="ud-submenu">
             <li class="ud-submenu-item">
               <a href="/dirigasi" class="ud-submenu-link">
@@ -54,10 +54,7 @@
     </div>
 
     <div class="navbar-btn d-none d-sm-inline-block">
-      <a href="/login" class="ud-main-btn ud-login-btn">
-        Sign In
-      </a>
-      <a class="ud-main-btn ud-white-btn" href="javascript:void(0)">
+      <a class="ud-main-btn ud-white-btn" href="/login">
         Sign Up
       </a>
     </div>
