@@ -22,9 +22,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-<script src="{{ asset('play-bootstrap-main') }}/assets/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('play-bootstrap-main') }}/assets/js/wow.min.js"></script>
-<script src="{{ asset('play-bootstrap-main') }}/assets/js/main.js"></script>
+
 
 
 

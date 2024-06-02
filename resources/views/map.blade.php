@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.outer')
 
 @section('content')
 
@@ -6,6 +6,7 @@
 <div id="map" style="height: 100vh;" ></div>
   @include('layouts.map')
   @endsection
+  
   <!-- ====== Banner End ====== -->
   
   <!-- ====== About Start ====== -->

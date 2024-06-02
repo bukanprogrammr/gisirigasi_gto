@@ -2,9 +2,13 @@
     <!-- Navbar -->
  
   <!-- /.navbar -->
-
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-branda" href="/">
+<style>
+  .navbar-white-transparent {
+    background-color: rgba(255, 255, 255, 0.8); /* Warna putih dengan transparansi 80% */
+}
+</style>
+  <nav class="navbar navbar-expand-lg{{ Request::is('map') ? ' navbar-white-transparent' : '' }}">
+    <a class="navbar-brand" href="/">
       <img src="{{ asset('play-bootstrap-main') }}/assets/images/logo/SIDIG.png" alt="Logo" style="max-height: 8vh; background: transparent;" >
     </a>
     <button class="navbar-toggler">
@@ -16,14 +20,14 @@
     <div class="navbar-collapse">
       <ul id="nav" class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="ud-menu-scroll" href="#home">Home</a>
+          <a class="ud-menu-scroll" href="{{ Request::is('/') ? url('#home') : url('/') }}">Home</a>
         </li>
 
         <li class="nav-item">
           <a class="ud-menu-scroll" href="/map" target="_blank">Map</a>
         </li>
         <li class="nav-item">
-          <a class="ud-menu-scroll" href="#team">Partisipasi Masyarakat</a>
+          <a class="ud-menu-scroll" href="{{ Request::is('/') ? url('#team') : url('/#team') }}">Partisipasi Masyarakat</a>
         </li>
         <li class="nav-item nav-item-has-children">
           <a href="#"> Data Irigasi </a>
@@ -55,7 +59,12 @@
 
     <div class="navbar-btn d-none d-sm-inline-block">
       <a class="ud-main-btn ud-white-btn" href="/login">
-        Sign Up
+        <i class="fas fa-user"></i> Login
       </a>
     </div>
   </nav>
+
+  <script>
+     window.logoSrcSticky = "{{ asset('play-bootstrap-main/assets/images/logo/SIDIG.png') }}";
+    window.logoSrcDefault = "{{ asset('play-bootstrap-main/assets/images/logo/SIDI.png') }}";
+  </script>

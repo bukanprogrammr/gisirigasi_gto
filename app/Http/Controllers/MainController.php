@@ -15,7 +15,7 @@ class MainController extends Controller
     public function maindirigasi(Dirigasi $dirigasi)
     {
         return view('outer.dirigasi', [
-            "title" => "Daerah Irigasi",
+            "title" => "Data Daerah Irigasi",
             "dirigasi" => Dirigasi::all(),
             "kabkota" => Kabkota::all(),
             "kabkota" => Bendung::all(),

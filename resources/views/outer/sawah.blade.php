@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.outer')
 
 @section('content')
 
@@ -6,7 +6,7 @@
 <section class="ud-page-banner">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12 wow fadeInUp" data-wow-delay=".2s">
         <div class="ud-banner-content">
           <h1>{{ $title }}</h1>
         </div>
@@ -25,8 +25,7 @@
   <!-- ====== About Start ====== -->
   <section id="about" class="ud-about">
     <div class="container">
-      <br>
-        <div class="card card-dark">
+        <div class="card card-dark wow fadeInUp" data-wow-delay=".2s">
           <!-- /.card-header -->
           <div class="card-body">
         

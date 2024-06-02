@@ -13,16 +13,17 @@
       ud_header.classList.remove("sticky");
     }
 
-    // show or hide the back-top-top button
-    const backToTop = document.querySelector(".back-to-top");
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
-      backToTop.style.display = "flex";
-    } else {
-      backToTop.style.display = "none";
-    }
+      // Akses URL asset dari window object
+var logoSrcSticky = window.logoSrcSticky;
+var logoSrcDefault = window.logoSrcDefault;
+
+// === logo change
+if (ud_header.classList.contains("sticky")) {
+    logo.src = logoSrcSticky;
+} else {
+    logo.src = logoSrcDefault;
+}
+
   };
 
   //===== close navbar-collapse when a  clicked
@@ -80,7 +81,4 @@
     return (-c / 2) * (t * (t - 2) - 1) + b;
   };
 
-  document.querySelector(".back-to-top").onclick = () => {
-    scrollTo(document.documentElement);
-  };
 })();

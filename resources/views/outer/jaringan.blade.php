@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.outer')
 
 @section('content')
 
@@ -6,7 +6,7 @@
 <section class="ud-page-banner">
   <div class="container">
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12 wow fadeInUp" data-wow-delay=".2s">
         <div class="ud-banner-content">
           <h1>{{ $title }}</h1>
         </div>
@@ -25,8 +25,8 @@
   <!-- ====== About Start ====== -->
   <section id="about" class="ud-about">
     <div class="container">
-      <br>
-        <div class="card card-dark">
+
+        <div class="card card-dark wow fadeInUp" data-wow-delay=".2s">
           <!-- /.card-header -->
           <div class="card-body">
         
@@ -79,55 +79,59 @@
 //basemap
 @include('layouts.basemap')
 
-       @foreach ($kabkota as $data)
-            var data{{ $data->id }} = L.layerGroup();
-            @endforeach
+@foreach ($kabkota as $data)
+var data{{ $data->id }} = L.layerGroup();
+@endforeach
 
+// Layer group untuk jaringan
+var jaringanLayer = L.layerGroup();
 
-            var map = L.map('map', {
-                center: [0.7163124374861523, 122.40620802112356],
-                zoom: 9,
-                layers: [peta1, 
-                @foreach ($kabkota as $data)
-                data{{ $data->id }},
-                @endforeach
-            ]
-            });            
-            
-            var overlayer = {
-                @foreach ($kabkota as $data)
-                "{{ $data->nama_kabkota }}" : data{{ $data->id }},
-                @endforeach
-            };
-            
-            L.control.layers(baseMaps, overlayer).addTo(map);
-            
-            // tampil area kabkota
-            @foreach ($kabkota as $data)
-            $.getJSON("{{ asset('storage/geojson-kabkota/' . $data->geojson) }}", function(data) {
-            L.geoJSON(data,{
-                style : {
-                    color : 'black',
-                    fillColor : '{{ $data->warna }}',
-                    fillOpacity : 0.4
-                }
-            }).addTo(data{{ $data->id }}).bindPopup("{{ $data->nama_kabkota }}");
-          });
-            @endforeach
-            
-            @foreach ($jaringan as $data)
-            $.getJSON("{{ asset('storage/geojson-jaringan/' . $data->geojson) }}", function(data) {
-            L.geoJSON(data,{
-                style : {
-                    color : 'cyan',
-                    fillOpacity : 3
-                }
-          }).addTo(map).bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align: colspan="2"><img width="150" src="{{ asset('storage/foto-jaringan/' . $data->foto) }}"</th></tr></thead><tr><td align="center" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Jaringan Irigasi {{ $data->dirigasi->nama_dirigasi }}</tr></td></tbody></table>');
-        });
-            @endforeach
+var map = L.map('map', {
+    center: [0.7163124374861523, 122.40620802112356],
+    zoom: 9.44,
+    layers: [peta1, 
+    @foreach ($kabkota as $data)
+    data{{ $data->id }},
+    @endforeach
+    jaringanLayer // tambahkan jaringan layer disini
+    ]
+});            
 
-            // Mendapatkan semua link dengan class "zoom-geojson-link"
-    var zoomGeoJSONLinks = document.querySelectorAll('.zoom-geojson-link');
+var overlayer = {
+    @foreach ($kabkota as $data)
+    "{{ $data->nama_kabkota }}" : data{{ $data->id }},
+    @endforeach
+    "Jaringan" : jaringanLayer // tambahkan jaringan layer disini
+};
+
+L.control.layers(baseMaps, overlayer).addTo(map);
+
+// tampil area kabkota
+@foreach ($kabkota as $data)
+$.getJSON("{{ asset('storage/geojson-kabkota/' . $data->geojson) }}", function(data) {
+    L.geoJSON(data, {
+        style: {
+            color: 'black',
+            fillColor: '{{ $data->warna }}',
+            fillOpacity: 0.4
+        }
+    }).addTo(data{{ $data->id }}).bindPopup("{{ $data->nama_kabkota }}").bringToBack();
+});
+@endforeach
+
+@foreach ($jaringan as $data)
+$.getJSON("{{ asset('storage/geojson-jaringan/' . $data->geojson) }}", function(data) {
+    L.geoJSON(data, {
+        style: {
+            color: 'cyan',
+            fillOpacity: 3
+        }
+    }).addTo(jaringanLayer).bindPopup('<table class="table table-bordered" style="border-collapse:collapse;border-spacing:0"><thead><tr><th font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;text-align:left;vertical-align: colspan="2"><img width="150" src="{{ asset('storage/foto-jaringan/' . $data->foto) }}"</th></tr></thead><tr><td align="center" font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:left;vertical-align:>Jaringan Irigasi {{ $data->dirigasi->nama_dirigasi }}</tr></td></tbody></table>');
+});
+@endforeach
+
+// Mendapatkan semua link dengan class "zoom-geojson-link"
+var zoomGeoJSONLinks = document.querySelectorAll('.zoom-geojson-link');
 
 // Menambahkan event listener untuk setiap link
 zoomGeoJSONLinks.forEach(function(link) {

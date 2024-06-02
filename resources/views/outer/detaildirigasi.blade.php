@@ -1,174 +1,109 @@
-@extends('layouts.frontend')
+@extends('layouts.outer')
 @section('content')
 
-<div class="row">
-    <div class="col-md-6">
-      <h2><b>{{ $title }}</b></h2>
-    </div>
-    <div class="col-md-6 text-right text-center">
-      <button type="button" class="btn btn-dark" onclick="toggleCard('card1')">Bendung</button>
-      <button type="button" class="btn btn-dark" onclick="toggleCard('card2')">Jaringan</button>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-header bg-dark text-light">
-                Lokasi
-                <div class="card-tools">
-                    <button type="button" class="btn btn-dark btn-sm" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                </div>
-            </div>
+<section class="ud-hero" id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
+          <h1 class="ud-hero-title">
+            {{ $title }}
+          </h1>
+        </div>
+        <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
+          <div class="card">
             <div class="card-body">
                 @if (!$bendung->isEmpty() || !$jaringan->isEmpty())
                 <div id="map" style="width: 100%; height: 540px;"></div>
                 @else
                 <p class="text-center">Data bendung dan jaringan tidak tersedia untuk ditampilkan!</p>
                 @endif
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <p class="card-description font-weight-bold">Info Daerah irigasi</p>
                 <table class="table">
-                    <tr>
-                        <th>Nama</th>
-                        <td>:</td>
-                        <td>{{ $dirigasi->nama_dirigasi }}</td>
-                    </tr>
-                    <tr>
-                        <th>Wilayah Sebaran</th>
-                        <td>:</td>
-                        <td>
-                            @foreach ($kabkota as $data)
-                            - {{ $data->nama_kabkota }} <br>
-                            @endforeach
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Luas</th>
-                        <td>:</td>
-                        <td>{{ $dirigasi->luas }}</td>
-                    </tr>
-                </table>
+                  <tr>
+                      <th>Nama</th>
+                      <td>:</td>
+                      <td>{{ $dirigasi->nama_dirigasi }}</td>
+                  </tr>
+                  <tr>
+                      <th>Wilayah Sebaran</th>
+                      <td>:</td>
+                      <td>
+                          @foreach ($kabkota as $data)
+                          - {{ $data->nama_kabkota }} <br>
+                          @endforeach
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>Luas</th>
+                      <td>:</td>
+                      <td>{{ $dirigasi->luas }}</td>
+                  </tr>
+              </table>
+              <button type="button" class="btn btn-warning" onclick="toggleCard('card1')"><i class="fas fa-info"></i> Bendung</button>
+              <button type="button" class="btn btn-warning" onclick="toggleCard('card2')"><i class="fas fa-info"></i> Jaringan</button>
             </div>
         </div>
-        <div id="card1" style="display: none;">
-
-            @if ($bendung->isEmpty())
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-description font-weight-bold">Info Bendung</p>
-                    <table class="table">
-                        <tr>
-                            <th>Belum ada data Bendung</th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            @else
-            @foreach ($bendung as $data)
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-description font-weight-bold">Info Bendung</p>
-                    @if ($data->foto)
-                    <img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" alt="Foto Bendung">
-                    @else
-                    <p>Foto belum ada</p>
-                    @endif
-                    <p class="card-description font-weight-bold">Koordinat : {{ $data->koordinat }}</p>
-                </div>
-            </div>
-            @endforeach
-            @endif
-        </div>
-
-        <div id="card2" style="display: none;">
-            @if ($jaringan->isEmpty())
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-description font-weight-bold">Info jaringan</p>
-                    <table class="table">
-                        <tr>
-                            <th>Belum ada data jaringan</th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            @else
-            @foreach ($jaringan as $data)
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-description font-weight-bold">Info jaringan</p>
-                    @if ($data->foto)
-                    <img src="{{ asset('storage/foto-jaringan/' . $data->foto) }}" class="img-fluid" alt="Foto jaringan">
-                    @else
-                    <p>Belum ada foto</p>
-                    @endif
-                </div>
-            </div>
-            @endforeach
-            @endif
-        </div>
-    </div>
-</div>
-
-  {{-- Jaringan Irigasi --}}
-  {{-- <div class="grid-margin stretch-card" style="display: none;" id="card2">
-    
-    @if ($jaringan->isEmpty())
-    <div class="card">
-      <div class="card-body">
-        <p class="card-description font-weight-bold">Info Jaringan Irigasi</p>
-        <table class="table">
-          <tr>
-            <th>Belum ada data Jaringan Irigasi</th>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card">
-        <div class="card-body">
-          <p class="card-description font-weight-bold">Foto Jaringan Irigasi</p>
-          <img src="" alt="belum ada foto">
+          <img
+            src="{{ asset('play-bootstrap-main') }}/assets/images/hero/dotted-shape.svg"
+            alt="shape"
+            class="shape shape-1"
+          />
+          <img
+            src="{{ asset('play-bootstrap-main') }}/assets/images/hero/dotted-shape.svg"
+            alt="shape"
+            class="shape shape-2"
+          />
         </div>
       </div>
     </div>
-
-  @else
-    @foreach ($jaringan as $data)
-    <div class="card">
-      <div class="card-body">
-        <p class="card-description font-weight-bold">Info Jaringan Irigasi</p>
-        <table class="table">
-          <tr>
-            <th>Titik Koordinat</th>
-            <th>:</th>
-            <th>@foreach ($jaringan as $data){{ $data->koordinat }}@endforeach</th>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-      <div class="card">
-        <div class="card-body">
-          <p class="card-description font-weight-bold">Foto Jaringan Irigasi</p>
-          <img src="{{ asset('storage/' . $data->foto) }}" class="rounded" style="max-width: 100%; height: auto;">
-        </div>
-      </div>
-    @endforeach
-  @endif
   </div>
-</div> --}}
-{{-- kolom pencarian --}}
+</section>
+
+<section class="ud-blog-grids">
+  <div class="container" id="card1" style="display: none;">
+    <div class="row justify-content-center text-center">
+      @if ($bendung->isEmpty())
+      <div class="col-lg-4 col-md-6 text-center">
+        <p>Data Bendung Belum Tersedia!</p>
+      </div>
+      @else
+      @foreach ($bendung as $data)
+      <div class="col-lg-4 col-md-6">
+        <div class="ud-single-blog">
+          <div class="ud-blog-image">
+              <img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" alt="Foto Bendung">
+          </div>
+          <span class="ud-blog-date">Koordinat : {{ $data->koordinat }}</span>
+        </div>
+      </div>
+      @endforeach
+      @endif
+    </div>
+  </div>
+
+  <div class="container" id="card2" style="display: none;">
+    <div class="row justify-content-center">
+      @if ($jaringan->isEmpty())
+      <div class="col-lg-4 col-md-6 text-center">
+        <p>Data Jaringan Irigasi Belum Tersedia!</p>
+      </div>
+      @else
+      @foreach ($jaringan as $data)
+      <div class="col-lg-4 col-md-6">
+        <div class="ud-single-blog">
+          <div class="ud-blog-image">
+              <img src="{{ asset('storage/foto-jaringan/' . $data->foto) }}" class="img-fluid" alt="Foto Jaringan">
+          </div>
+        </div>
+      </div>
+      @endforeach
+      @endif
+    </div>
+  </div>
+</section>
+    @include('layouts.footer')
+    
 <script>
 
 function toggleCard(cardId) {

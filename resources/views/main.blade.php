@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.outer')
 @section('content')
 
 {{-- hero --}}
@@ -7,6 +7,11 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
+          @if (session('pesan'))
+    <div class="alert alert-success alert-dismissible" id="success-alert">
+        <h5><i class="icon fas fa-check"></i>{{ session('pesan') }}</h5>
+    </div>
+    @endif
           <h1 class="ud-hero-title">
             Sistem Informasi Geografis Daerah Irigasi Provinsi Gorontalo
           </h1>
@@ -20,18 +25,13 @@
               </a>
             </li>
             <li>
-              <a href="https://github.com/uideck/play-bootstrap" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-link-btn">
+              <a href="#fitur" rel="nofollow noopener" class="ud-main-btn ud-link-btn">
                 Selengkapnya <i class="lni lni-arrow-right"></i>
               </a>
             </li>
           </ul>
         </div>
-        <div
-          class="ud-hero-brands-wrapper wow fadeInUp"
-          data-wow-delay=".3s"
-        >
-          <img src="{{ asset('play-bootstrap-main') }}/assets/images/hero/brand.svg" alt="brand" />
-        </div>
+        
         <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
           <img src="{{ asset('play-bootstrap-main') }}/assets/images/hero/background.png" alt="hero-image" class="rounded"/>
           <img
@@ -51,7 +51,7 @@
 </section>
 
 {{-- fitur --}}
-<section id="features" class="ud-features">
+<section id="fitur" class="ud-features">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
@@ -73,10 +73,10 @@
             <div class="ud-feature-content">
               <h3 class="ud-feature-title">Daerah Irigasi</h3>
               <p class="ud-feature-desc">
-                Lorem Ipsum is simply dummy text of the printing and industry.
+                Cek Data Pemetaan Daerah Irigasi Provinsi Gorontalo
               </p>
               <a href="/dirigasi" class="ud-feature-link">
-                Learn More
+                Selengkapnya <i class="lni lni-arrow-right"></i>
               </a>
             </div>
           </div>
@@ -91,10 +91,10 @@
             <div class="ud-feature-content">
               <h3 class="ud-feature-title">Bendung</h3>
               <p class="ud-feature-desc">
-                Lorem Ipsum is simply dummy text of the printing and industry.
+                Cek Data Pemetaan Bendung Provinsi Gorontalo
               </p>
               <a href="javascript:void(0)" class="ud-feature-link">
-                Learn More
+                Selengkapnya <i class="lni lni-arrow-right"></i>
               </a>
             </div>
           </div>
@@ -109,10 +109,10 @@
             <div class="ud-feature-content">
               <h3 class="ud-feature-title">Jaringan Irigasi</h3>
               <p class="ud-feature-desc">
-                Lorem Ipsum is simply dummy text of the printing and industry.
+                Cek Data Pemetaan Jaringan Irigasi Provinsi Gorontalo
               </p>
               <a href="javascript:void(0)" class="ud-feature-link">
-                Learn More
+                Selengkapnya <i class="lni lni-arrow-right"></i>
               </a>
             </div>
           </div>
@@ -127,10 +127,10 @@
             <div class="ud-feature-content">
               <h3 class="ud-feature-title">Sawah</h3>
               <p class="ud-feature-desc">
-                Lorem Ipsum is simply dummy text of the printing and industry.
+                Cek Data Pemetaan Sawah Provinsi Gorontalo
               </p>
               <a href="javascript:void(0)" class="ud-feature-link">
-                Learn More
+                Selengkapnya <i class="lni lni-arrow-right"></i>
               </a>
             </div>
           </div>
@@ -178,55 +178,84 @@
             </div>
             <div class="ud-team-info">
               <h5>{{ $data->nama }}</h5>
-              <button class="ud-main-btn ud-border-btn detail-button" data-nama="{{ $data->nama }}" data-kritik="{{ $data->kritik }}" data-koordinat="{{ $data->koordinat }}" data-tanggapan="{{ $data->tanggapan }}" data-foto="{{ $data->foto }}">Detail</button>
+              <button class="ud-main-btn ud-border-btn detail-button"
+               data-nama="{{ $data->nama }}" 
+               data-kritik="{{ $data->kritik }}" 
+               data-koordinat="{{ $data->koordinat }}" 
+               data-tanggapan="{{ $data->tanggapan }}" 
+               data-foto="{{ $data->foto }}">Detail</button>
             </div>
           </div>
         </div>                               
         @endforeach
       </div>
-      @include('outer.index')
+      
+      @include('outer.modalmasyarakat')
     </div>
     </div>
   </section>
   @include('layouts.footer')
   <script>
-         // ==== for menu scroll
-         const pageLink = document.querySelectorAll(".ud-menu-scroll");
 
-pageLink.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    e.preventDefault();
-    document.querySelector(elem.getAttribute("href")).scrollIntoView({
-      behavior: "smooth",
-      offsetTop: 1 - 60,
+         $(document).ready(function() {
+        // Hide the alert after 3 seconds (3000 milliseconds)
+        setTimeout(function() {
+            $("#success-alert").fadeOut('slow', function() {
+                $(this).remove(); 
+            });
+        }, 3000);
     });
-  });
-});
 
-// section menu active
-function onScroll(event) {
-  const sections = document.querySelectorAll(".ud-menu-scroll");
-  const scrollPos =
-    window.pageYOffset ||
-    document.documentElement.scrollTop ||
-    document.body.scrollTop;
-
-  for (let i = 0; i < sections.length; i++) {
-    const currLink = sections[i];
-    const val = currLink.getAttribute("href");
-     {
-      document
-        .querySelector(".ud-menu-scroll")
-        .classList.remove("active");
-      currLink.classList.add("active");
-    } else {
-      currLink.classList.remove("active");
+    $('.multiple-items').slick({
+      dots: true,
+          infinite: true,
+          speed: 500,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          responsive: [
+              {
+                  breakpoint: 992,
+                  settings: {
+                      slidesToShow: 2
+                  }
+              },
+              {
+                  breakpoint: 768,
+                  settings: {
+                      slidesToShow: 1
+                  }
+              }
+          ]
+    });
+    
+    function detil(data) {
+      document.getElementById("detail_nama").innerText = data.nama;
+      document.getElementById("detail_kritik").innerText = data.kritik;
+      document.getElementById("detail_koordinat").innerText = data.koordinat;
+      document.getElementById("detail_tanggapan").innerText = data.tanggapan;
+      document.getElementById("detail_foto").src = "{{ asset('storage/foto-masalah/') }}" + "/" + data.foto;
+    
+      $('#modal_detail_pengaduan').modal('show');
     }
-  }
-}
-
-window.document.addEventListener("scroll", onScroll);
-
-  </script>
+    
+    $(document).ready(function() {
+      $('.detail-button').click(function() {
+          var nama = $(this).data('nama');
+          var kritik = $(this).data('kritik');
+          var koordinat = $(this).data('koordinat');
+          var tanggapan = $(this).data('tanggapan');
+          var foto = $(this).data('foto');
+    
+          detil({
+              "nama": nama,
+              "kritik": kritik,
+              "koordinat": koordinat,
+              "tanggapan": tanggapan,
+              "foto": foto
+          });
+      });
+    });
+    
+        </script>
 
 @endsection
