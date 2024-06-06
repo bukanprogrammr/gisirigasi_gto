@@ -7,9 +7,9 @@
     background-color: rgba(255, 255, 255, 0.8); /* Warna putih dengan transparansi 80% */
 }
 </style>
-  <nav class="navbar navbar-expand-lg{{ Request::is('map') ? ' navbar-white-transparent' : '' }}">
+  <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="/">
-      <img src="{{ asset('play-bootstrap-main') }}/assets/images/logo/SIDIG.png" alt="Logo" style="max-height: 8vh; background: transparent;" >
+      <img src="{{ asset('play-bootstrap-main') }}/assets/images/logo/SIDI.png" alt="Logo" style="max-height: 8vh; background: transparent;" >
     </a>
     <button class="navbar-toggler">
       <span class="toggler-icon"> </span>
@@ -24,7 +24,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="ud-menu-scroll" href="/map" target="_blank">Map</a>
+          <a class="ud-menu-scroll" href="/map">Map</a>
         </li>
         <li class="nav-item">
           <a class="ud-menu-scroll" href="{{ Request::is('/') ? url('#team') : url('/#team') }}">Partisipasi Masyarakat</a>

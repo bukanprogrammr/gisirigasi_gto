@@ -130,7 +130,7 @@ $(function() {
             @foreach ($bendung as $data)
             // icon
             var myIcon = L.icon({
-                iconUrl:'http://vegetasi-gto2.test/AdminLTE/dist/img/bendung.png',
+                iconUrl:'{{asset ('AdminLTE')}}//dist/img/bendung.png',
             iconSize: [38, 38],
             });
 

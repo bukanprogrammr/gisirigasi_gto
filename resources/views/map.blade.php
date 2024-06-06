@@ -1,43 +1,44 @@
 @extends('layouts.outer')
 
 @section('content')
-
-<!-- ====== Banner Start ====== -->
-<div id="map" style="height: 100vh;" ></div>
-  @include('layouts.map')
-  @endsection
+<style>
   
-  <!-- ====== Banner End ====== -->
+  #search-box {
+      position: absolute;
+      top: 100px;
+      left: 50px;
+      z-index: 1000;
+      background: white;
+      padding: 5px;
+      border: 1px solid gray;
+  }
+
+  .suggestion {
+      cursor: pointer;
+      padding: 5px;
+  }
+
+  .suggestion:hover {
+      background-color: #f0f0f0;
+  }
+</style>
+<section class="ud-hero-map" id="home">
   
-  <!-- ====== About Start ====== -->
-
-{{-- <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-  <title>GIS Daerah Irigasi | {{ $title }}</title>
-
-  @include('layouts.packouter')
   
-</head>
-<body>
+  <div id="search-box">
+    <select id="search-type">
+      <option value="jaringan">Cari Jaringan</option>
+      <option value="bendung">Cari Bendung</option>
+    </select>
+    <input type="text" id="network-name" placeholder="Masukkan Nama">
+    <button onclick="searchNetwork()">Cari</button>
+    <!-- Daftar saran akan ditampilkan di bawah input -->
+    <div id="suggestions" style="position: absolute; top: 100%; left: 0; width: 100%; background: #fff; border: 1px solid #ccc; display: none;"></div>
+  </div>
+  
+  <div id="map" style="height: 90vh; z-index: 0;"></div>
+</section>
 
-    <body class="hold-transition layout-top-nav">
-        <div class="wrapper"> 
-  <!-- Navbar -->
-@include('layouts.navbar')
-  <!-- /.navbar -->
+@include('layouts.map')
 
-  <div id="map" style="height: 91.5vh;" ></div>
-
-</body>
-</html>
-
-@include('layouts.map') --}}
+@endsection
