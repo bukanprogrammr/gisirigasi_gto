@@ -74,7 +74,7 @@
   });
 
 //basemap
-@include('layouts.basemap')
+@include('map.basemap')
 
        @foreach ($kabkota as $data)
             var data{{ $data->id }} = L.layerGroup();

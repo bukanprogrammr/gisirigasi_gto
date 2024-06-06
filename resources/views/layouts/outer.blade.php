@@ -32,6 +32,7 @@
     />
 {{-- leaflet --}}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
@@ -40,6 +41,7 @@
 <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     
     {{-- play-bootstrap-main --}}
+<link rel="stylesheet" href="css/Leaflet.PolylineMeasure.css" />
 <link rel="stylesheet" href="{{ asset('play-bootstrap-main') }}/assets/css/bootstrap.min.css" />
 <link rel="stylesheet" href="{{ asset('play-bootstrap-main') }}/assets/css/animate.css" />
 <link rel="stylesheet" href="{{ asset('play-bootstrap-main') }}/assets/css/lineicons.css" />
@@ -62,6 +64,8 @@
     <!-- ====== Header End ====== -->
     {{-- leaflet --}}
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js"></script>
+    <script src="js/Leaflet.PolylineMeasure.js"></script>
     {{-- play-bootstrap-main --}}
     <script src="{{ asset('play-bootstrap-main') }}/assets/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('play-bootstrap-main') }}/assets/js/wow.min.js"></script>

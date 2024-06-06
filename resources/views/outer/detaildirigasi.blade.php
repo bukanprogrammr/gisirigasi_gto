@@ -137,7 +137,7 @@ function toggleCard(cardId) {
     });
 
 //basemap
-@include('layouts.basemap')
+@include('map.basemap')
 
             var kabkota = L.layerGroup();
 

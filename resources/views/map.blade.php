@@ -1,6 +1,8 @@
 @extends('layouts.outer')
 
 @section('content')
+<link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
+<script src="https://unpkg.com/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js"></script>
 <style>
   
   #search-box {
@@ -27,11 +29,11 @@
   
   <div id="search-box">
     <select id="search-type">
-      <option value="jaringan">Cari Jaringan</option>
+      <option value="jaringan" >Cari Jaringan Irigasi</option>
       <option value="bendung">Cari Bendung</option>
     </select>
     <input type="text" id="network-name" placeholder="Masukkan Nama">
-    <button onclick="searchNetwork()">Cari</button>
+    <button onclick="searchNetwork()" class="btn btn-primary btn-xs">Cari</button>
     <!-- Daftar saran akan ditampilkan di bawah input -->
     <div id="suggestions" style="position: absolute; top: 100%; left: 0; width: 100%; background: #fff; border: 1px solid #ccc; display: none;"></div>
   </div>
@@ -40,5 +42,7 @@
 </section>
 
 @include('layouts.map')
+@include('map.toolsmap')
+
 
 @endsection
