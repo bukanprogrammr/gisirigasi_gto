@@ -24,6 +24,7 @@
                     <tr>
                         <th width="30px">No</th>
                         <th>Jaringan Irigasi</th>
+                        <th>Deskripsi</th>
                         <th>Foto</th>
                         {{-- <th>Geojson</th> --}}
                         {{-- <th>DGeojson</th> --}}
@@ -36,6 +37,7 @@
                       <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $data->dirigasi->nama_dirigasi }}</td>
+                        <td>{{substr($data->deskripsi, 0, 60) }}...</td>
                         {{-- <td><a href="{{ route('jaringan.download-geojson', $data->id) }}" class="btn btn-primary">Download GeoJSON</a></td> --}}
                         {{-- <td> <a href="{{ route('jaringan.download', $data->id) }}" class="btn btn-primary">Download</a></td> --}}
                         <td><img src="{{ asset('storage/foto-jaringan/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>

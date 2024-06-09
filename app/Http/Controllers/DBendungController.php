@@ -49,8 +49,10 @@ class DBendungController extends Controller
         $validatedData = $request->validate(
             [
                 'dirigasi_id' => 'required',
+                'nama_bendung' => 'required',
                 'koordinat' => 'required',
-                'foto' => 'image|file|max:1024',
+                'deskripsi' => 'required',
+                'foto' => 'image|file|max:2084',
             ]
         );
         if ($request->file('foto')) {
@@ -99,8 +101,10 @@ class DBendungController extends Controller
     public function update(Request $request, Bendung $bendung)
     {
         $rules = [
+            'nama_bendung' => 'required',
             'koordinat' => 'required',
-            'foto' => 'image|file|max:1024',
+            'deskripsi' => 'required',
+            'foto' => 'image|file|max:2084',
         ];
 
         $validatedData = $request->validate($rules);

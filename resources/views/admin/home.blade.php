@@ -81,15 +81,7 @@
     </div>
 </div>
 </div>
-
-    <div class="card">
-        <div class="card-header bg-dark text-light">
-            {{ $title }}
-        </div>
-        <div class="card-body ">
-            <div id="map" style="width: 100%; height: 480px;"></div>
-        </div>
-    </div>    
+    
 
     @include('layouts.map')
 @endsection

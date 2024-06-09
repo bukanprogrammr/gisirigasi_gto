@@ -51,6 +51,7 @@ class DJaringanController extends Controller
         $validatedData = $request->validate(
             [
                 'dirigasi_id' => 'required|unique:jaringans,dirigasi_id',
+                'deskripsi' => 'required',
                 'geojson' => ['file', 'max:6144', 'required', new GeoJsonFile],
                 'foto' => 'image|file|max:1024',
             ],
@@ -125,6 +126,7 @@ class DJaringanController extends Controller
     {
         // Validasi input
         $validatedData = $request->validate([
+            'deskripsi' => 'required',
             'foto' => 'nullable|image', // Opsional: update foto
             'geojson'  => ['file', 'max:6144', new GeoJsonFile], // Opsional: update GeoJSON
         ]);

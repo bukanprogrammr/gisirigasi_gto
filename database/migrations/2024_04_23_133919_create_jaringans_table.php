@@ -18,6 +18,7 @@ class CreateJaringansTable extends Migration
             $table->foreignId('dirigasi_id');
             $table->string('foto')->nullable();
             $table->string('geojson');
+            $table->longText('deskripsi');
             $table->timestamps();
         });
     }

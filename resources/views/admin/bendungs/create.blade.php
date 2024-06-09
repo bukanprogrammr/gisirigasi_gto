@@ -17,10 +17,22 @@
             </div>
 
             <div class="form-group">
+              <label>Nama Bendung</label>
+              <input id="nama_bendung" name="nama_bendung" type="text" class="form-control" placeholder="Nama Bendung ..." required>
+              @error('nama_bendung') <small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+            
+            <div class="form-group">
               <label>Koordinat</label>
-              <input id="koordinat" name="koordinat" type="text" class="form-control" placeholder="Longitude, Latitude ...">
+              <input id="koordinat" name="koordinat" type="text" class="form-control" placeholder="Longitude, Latitude ..." required>
               @error('koordinat') <small class="text-danger">{{ $message }}</small>@enderror
             </div>
+
+            <div class="form-group">
+              <label>Deskripsi</label>
+              <textarea id="deskripsi" name="deskripsi" class="form-control" rows="3" placeholder="Enter ..." required></textarea>
+              @error('deskripsi') <small class="text-danger">{{ $message }}</small>@enderror
+              </div>
 
             <div class="form-group">
               <label for="foto">Foto</label>

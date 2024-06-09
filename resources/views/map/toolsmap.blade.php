@@ -1,20 +1,103 @@
 <script>
 
-    //Fungsi zoom ke geojson
-    function zoomToLayer(index) {
-        var layer = jaringanLayers[index].layer;
-        map.fitBounds(layer.getBounds());
+// Fungsi zoom ke marker, tutup popup dan tampilkan tabel
+function zoomToCoordinate(coordinate, id, type, title, description, imageUrl) {
+    map.setView(coordinate, 18);
+    
+    // Tutup semua popup
+    map.closePopup();
+
+    // Tampilkan tabel dengan informasi
+    var tabelInfo = document.getElementById('tabel-info');
+    if (type === 'bendung') {
+        tabelInfo.innerHTML = `
+            <table class="table table-bordered wow fadeInUp" data-wow-delay=".2s" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th colspan="2" style="text-align: center;">
+                            <img width="100%" src="${imageUrl}">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; white-space: normal;">
+                            ${title}
+                        </td>
+                    </tr>
+                    <tr style="display: table-row;">
+                        <td style="text-align: justify; white-space: normal;">
+                            ${description}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="hideTabelInfo()" class="btn btn-secondary">Close</button>
+        `;
+    } else {
+        tabelInfo.innerHTML = `
+            <table class="table table-bordered wow fadeInUp" data-wow-delay=".2s" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th colspan="2" style="text-align: center;">
+                            <img width="100%" src="${imageUrl}">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: justify; white-space: normal;">
+                            <strong>Permasalahan :</strong> ${title}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="hideTabelInfo()" class="btn btn-secondary">Close</button>
+        `;
     }
+    tabelInfo.style.display = 'block';
+}
 
+function hideTabelInfo() {
+    document.getElementById('tabel-info').style.display = 'none';
+}
 
+   // Fungsi zoom ke geojson dan menampilkan informasi
+function zoomToLayer(index, title, deskripsi, imageUrl) {
+    var layer = jaringanLayers[index].layer;
+    map.fitBounds(layer.getBounds());
 
+    // Tutup semua popup
+    map.closePopup();
 
-    // Fungsi zoom ke marker
-    function zoomToCoordinate(coordinate) {
-                map.setView(coordinate, 15);
-            }
-
-
+    // Tampilkan tabel dengan informasi
+    var tabelInfo = document.getElementById('tabel-info');
+    tabelInfo.innerHTML = `
+        <table class="table table-bordered wow fadeInUp" data-wow-delay=".2s" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th colspan="2" style="text-align: center;">
+                        <img width="100%" src="${imageUrl}">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="text-align: center; white-space: normal;">
+                        ${title}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: justify; white-space: normal;">
+                        ${deskripsi}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="hideTabelInfo()" class="btn btn-secondary">Close</button>
+    `;
+    tabelInfo.style.display = 'block';
+}
 
 
     // Fungsi untuk menampilkan saran saat pengguna mengetik
@@ -118,7 +201,7 @@ document.body.addEventListener("click", function(event) {
 
     // Ukur Jarak
     L.control.scale ({maxWidth:240, metric:true, imperial:false, position: 'bottomleft'}).addTo (map);
-            let polylineMeasure = L.control.polylineMeasure ({position:'topleft', unit:'kilometres', showBearings:true, clearMeasurementsOnStop: false, showClearControl: true, showUnitControl: true})
+            let polylineMeasure = L.control.polylineMeasure ({position:'topleft', unit:'kilometres', showBearings:true, clearMeasurementsOnStop: false, showClearControl: true, showUnitControl: false})
             polylineMeasure.addTo (map);
 
             function debugevent(e) { console.debug(e.type, e, polylineMeasure._currentLine) }
@@ -135,11 +218,21 @@ document.body.addEventListener("click", function(event) {
             map.on('polylinemeasure:remove', debugevent);
             
 
+    //Fullscreen
     L.control.fullscreen({
     position: 'topright', // Atur posisi tombol fullscreen
     title: 'Fullscreen',   // Judul tooltip untuk tombol fullscreen
     titleCancel: 'Exit Fullscreen', // Judul tooltip saat keluar dari fullscreen
     forceSeparateButton: true // Menampilkan tombol fullscreen terpisah
-}).addTo(map);
+    }).addTo(map);
+
+// Tambahkan kontrol cetak
+var printer = L.easyPrint({
+        title: 'Print Map',
+        position: 'topleft',
+        sizeModes: ['A4Landscape', 'A4Portrait'],
+        exportOnly: true,
+        hideControlContainer: true
+    }).addTo(map);
         
 </script>

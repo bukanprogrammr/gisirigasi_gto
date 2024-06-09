@@ -26,6 +26,7 @@
                         <th>Bendung</th>
                         {{-- <th>Geojson</th> --}}
                         <th>Koordinat</th>
+                        <th>Deskripsi</th>
                         <th>Foto</th>
                         <th>Aksi</th>
                     </tr>
@@ -35,9 +36,10 @@
                   @foreach ($bendung as $data)
                       <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $data->dirigasi->nama_dirigasi }}</td>
+                        <td>{{ $data->nama_bendung }}</td>
                         {{-- <td>{{ $data->geojson }}</td> --}}
                         <td>{{ $data->koordinat }}</td>
+                        <td>{{substr($data->deskripsi, 0, 50) }}...</td>
                         <td><img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" style="max-height: 100px; max-width: 150px;"></td>
                         <td class="text-center">
                           <a href="/admin/bendungs/{{ $data->id }}/edit" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>

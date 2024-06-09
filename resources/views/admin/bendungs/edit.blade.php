@@ -8,8 +8,20 @@
 
             <div class="form-group">
               <label>Koordinat</label>
+              <input id="nama_bendung" name="nama_bendung" type="text" class="form-control" placeholder="Longitude, Latitude ..." value="{{ old('nama_bendung', $bendung->nama_bendung) }}">
+              @error('nama_bendung') <small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+
+            <div class="form-group">
+              <label>Koordinat</label>
               <input id="koordinat" name="koordinat" type="text" class="form-control" placeholder="Longitude, Latitude ..." value="{{ old('koordinat', $bendung->koordinat) }}">
               @error('koordinat') <small class="text-danger">{{ $message }}</small>@enderror
+            </div>
+
+            <div class="form-group">
+              <label>Deskripsi</label>
+              <textarea id="deskripsi" name="deskripsi" class="form-control" rows="3" placeholder="Enter ..." required>{{ $bendung->deskripsi }}</textarea>
+              @error('deskripsi') <small class="text-danger">{{ $message }}</small>@enderror
             </div>
 
             <div class="form-group">

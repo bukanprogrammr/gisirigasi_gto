@@ -16,8 +16,10 @@ class CreateBendungsTable extends Migration
         Schema::create('bendungs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('dirigasi_id');
+            $table->string('nama_bendung');
             $table->string('foto')->nullable();
             $table->string('koordinat');
+            $table->longText('deskripsi');
             $table->timestamps();
         });
     }

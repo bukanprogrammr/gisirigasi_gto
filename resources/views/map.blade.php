@@ -4,6 +4,18 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
 <script src="https://unpkg.com/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js"></script>
 <style>
+
+@media print {
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            #map {
+                width: 100vw;
+                height: 50vh;
+            }
+        }
   
   #search-box {
       position: absolute;
@@ -39,10 +51,17 @@
   </div>
   
   <div id="map" style="height: 90vh; z-index: 0;"></div>
+  <div id="tabel-info" style="display: none; position: fixed; bottom: 10px; right: 10px; width: 400px; max-height: 95vh; overflow: auto; background-color: white; border: 1px solid black; padding: 10px; z-index: 1000;"></div>
+  
+  </div>
+  
 </section>
 
+@include('map.basemap')
 @include('layouts.map')
 @include('map.toolsmap')
+{{-- @include('map.popup') --}}
+
 
 
 @endsection

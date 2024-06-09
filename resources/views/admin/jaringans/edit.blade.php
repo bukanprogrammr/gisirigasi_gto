@@ -14,6 +14,12 @@
           </div>
 
           <div class="form-group">
+            <label>Deskripsi</label>
+            <textarea id="deskripsi" name="deskripsi" class="form-control" rows="3" placeholder="Enter ..." required>{{ $jaringan->deskripsi }}</textarea>
+            @error('deskripsi') <small class="text-danger">{{ $message }}</small>@enderror
+          </div>
+
+          <div class="form-group">
             <label for="foto">Foto</label>
             <input name="foto" type="file" id="foto" class="form-control" onchange="previewImage()" accept="image/jpeg,image/png" value="{{ asset('storage/' .$jaringan->foto) }}">
             <img src="{{ asset('storage/foto-jaringan/' .$jaringan->foto) }}" class="img-preview img-fluid mb-3 col-sm-4">

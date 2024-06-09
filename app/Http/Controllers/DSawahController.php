@@ -51,7 +51,7 @@ class DSawahController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'kabkota_id' => 'required',
+                'kabkota_id' => 'required|unique:sawahs,kabkota_id',
                 'geojson'  => ['required', 'file', 'max:10240', new GeoJsonFile],
             ]
         );

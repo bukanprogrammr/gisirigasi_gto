@@ -57,7 +57,7 @@
       </ul>
     </div>
 
-    <div class="navbar-btn d-none d-sm-inline-block">
+    <div class=" d-none d-sm-inline">
       <a class="ud-main-btn ud-white-btn" href="/login">
         <i class="fas fa-user"></i> Login
       </a>
