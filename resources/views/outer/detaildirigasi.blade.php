@@ -72,7 +72,8 @@
       <div class="col-lg-4 col-md-6">
         <div class="ud-single-blog">
           <div class="ud-blog-image">
-              <img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" alt="Foto Bendung">
+            <strong>Bendung {{ $data->nama_bendung }}</strong>
+              <img src="{{ asset('storage/foto-bendung/' . $data->foto) }}" class="img-fluid" alt="Foto Bendung" style=" max-height : 255px">
           </div>
           <span class="ud-blog-date">Koordinat : {{ $data->koordinat }}</span>
         </div>
@@ -102,8 +103,9 @@
     </div>
   </div>
 </section>
-    @include('layouts.footer')
-    
+@include('layouts.footer')
+@include('map.basemap')
+
 <script>
 
 function toggleCard(cardId) {
@@ -113,8 +115,8 @@ function toggleCard(cardId) {
     if (cardId === 'card1') {
       bendungCard.style.display = 'block';
       jaringanCard.style.display = 'none';
-    } else if (cardId === 'card2') {
-      bendungCard.style.display = 'none';
+      } else if (cardId === 'card2') {
+        bendungCard.style.display = 'none';
       jaringanCard.style.display = 'block';
     }
   }
@@ -136,8 +138,6 @@ function toggleCard(cardId) {
       });
     });
 
-//basemap
-@include('map.basemap')
 
             var kabkota = L.layerGroup();
 

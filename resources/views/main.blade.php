@@ -56,8 +56,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="ud-section-title">
-            <span>Fitur</span>
-            <h2>Main Features of Play</h2>
+            <h2>Menu</h2>
            
           </div>
         </div>

@@ -49,13 +49,14 @@
                 @endforeach
               </tbody>
             </table>
-          </div>
-          <!-- /.card-body -->
-        </div>
-  </div>
-</section>
-
-@include('layouts.footer')
+            </div>
+            <!-- /.card-body -->
+            </div>
+            </div>
+            </section>
+            
+            @include('layouts.footer')
+            @include('map.basemap')
 <script>
   $(function() {
     $("#tabel1").DataTable({
@@ -74,7 +75,6 @@
   });
 
 //basemap
-@include('map.basemap')
 
        @foreach ($kabkota as $data)
             var data{{ $data->id }} = L.layerGroup();
@@ -112,17 +112,9 @@
           });
             @endforeach
             
-            @foreach ($sawah as $data)
-            $.getJSON("{{ asset('storage/geojson-sawah/' . $data->geojson) }}", function(data) {
-            L.geoJSON(data,{
-                style : {
-                    color : 'green',
-                    fillOpacity : 0.4
-                }
-            }).addTo(map);
-        });
-            @endforeach
+            var sawah = @json($sawah);// Iterasi melalui array sawah dengan forEach
             
 </script>
+<script src="js/sawah.js"></script>
 
 @endsection

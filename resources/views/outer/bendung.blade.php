@@ -65,6 +65,7 @@
 </section>
 
 @include('layouts.footer')
+@include('map.basemap')
 
 
 <script>
@@ -85,10 +86,6 @@ $(function() {
     });
   });
 
-
-
-          //basemap
-            @include('map.basemap')
 
 
        @foreach ($kabkota as $data)

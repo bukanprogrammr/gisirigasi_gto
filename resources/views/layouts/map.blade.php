@@ -29,6 +29,13 @@
     
     L.control.layers(baseMaps, overlayer).addTo(map);
     
+    L.control.resetView({
+        position: "topleft",
+        title: "Reset view",
+        latlng: L.latLng([0.7163124374861523, 122.40620802112356]),
+        zoom: 9,
+    }).addTo(map);
+    
     
     
     // tampil area kabkota

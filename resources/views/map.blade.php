@@ -51,6 +51,7 @@
   </div>
   
   <div id="map" style="height: 90vh; z-index: 0;"></div>
+  {{-- <button onclick="resetZoom()">Reset Zoom</button> --}}
   <div id="tabel-info" style="display: none; position: fixed; bottom: 10px; right: 10px; width: 400px; max-height: 95vh; overflow: auto; background-color: white; border: 1px solid black; padding: 10px; z-index: 1000;"></div>
   
   </div>

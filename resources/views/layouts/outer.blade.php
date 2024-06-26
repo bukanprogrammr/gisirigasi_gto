@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
 <link rel="stylesheet" href="css/Leaflet.PolylineMeasure.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet-easyprint@2.1.9/dist/bundle.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
 <!-- DataTables -->
@@ -67,6 +68,7 @@
     <script src="https://unpkg.com/leaflet-fullscreen/dist/Leaflet.fullscreen.min.js"></script>
     <script src="js/Leaflet.PolylineMeasure.js"></script>
     <script src="https://unpkg.com/leaflet-easyprint@2.1.9/dist/bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
     {{-- play-bootstrap-main --}}
     <script src="{{ asset('play-bootstrap-main') }}/assets/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('play-bootstrap-main') }}/assets/js/wow.min.js"></script>

@@ -55,9 +55,10 @@
           <!-- /.card-body -->
         </div>
   </div>
-</section>
-@include('layouts.footer')
-
+  </section>
+  @include('layouts.footer')
+  @include('map.basemap')
+  
 <script>
   $(function() {
     $("#tabel1").DataTable({
@@ -77,7 +78,6 @@
   
 
 //basemap
-@include('map.basemap')
 
 @foreach ($kabkota as $data)
 var data{{ $data->id }} = L.layerGroup();
