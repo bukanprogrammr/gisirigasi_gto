@@ -113,7 +113,7 @@ class BendungSeeder extends Seeder
         Bendung::create([
             'dirigasi_id' => '11',
             'nama_bendung' => 'Taluduyunu',
-            'koordinat' => '0.5138540997117546, 121.95488801311754',
+            'koordinat' => '0.5169507153521348, 121.95558607578279',
             'deskripsi' => 'Bendungan Taluduyunu, yang terletak di Kecamatan Duhiadaa dan Taluduyunu, Pohuwato, telah selesai dibangun. Bendungan ini khusus untuk mengaliri sawah dan membantu petani yang selama ini mengalami kekeringan dan gagal panen. Bendungan ini mulai beroperasi pada awal Januari 2024. Sejumlah petani berharap bendungan ini dapat berfungsi dengan baik dan tetap menjadikan Buntulia dan Duhiadaa sebagai lumbung beras di kabupaten Pohuwato.',
             'foto' => 'rg8RU3VAbvl2G80HDODlWuHBVk7sgXef9MSoCxvQ.jpg'
         ]);

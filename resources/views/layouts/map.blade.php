@@ -16,7 +16,7 @@
             L.latLng(0.7163124374861523 - 1.50, 122.40620802112356 - 1.50), // Batas bawah kiri
             L.latLng(0.7163124374861523 + 1.50, 122.40620802112356 + 1.50)  // Batas atas kanan
         ),
-        layers: [peta1, kabkota, sawah, jaringan, bendung, masyarakat]
+        layers: [peta4, kabkota, sawah, jaringan, bendung, masyarakat]
     });
     
     var overlayer = {

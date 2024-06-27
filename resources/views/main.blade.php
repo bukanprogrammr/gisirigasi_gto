@@ -92,7 +92,7 @@
               <p class="ud-feature-desc">
                 Cek Data Pemetaan Bendung Provinsi Gorontalo
               </p>
-              <a href="javascript:void(0)" class="ud-feature-link">
+              <a href="/bendung" class="ud-feature-link">
                 Selengkapnya <i class="lni lni-arrow-right"></i>
               </a>
             </div>
@@ -110,7 +110,7 @@
               <p class="ud-feature-desc">
                 Cek Data Pemetaan Jaringan Irigasi Provinsi Gorontalo
               </p>
-              <a href="javascript:void(0)" class="ud-feature-link">
+              <a href="/jaringan" class="ud-feature-link">
                 Selengkapnya <i class="lni lni-arrow-right"></i>
               </a>
             </div>
@@ -128,7 +128,7 @@
               <p class="ud-feature-desc">
                 Cek Data Pemetaan Sawah Provinsi Gorontalo
               </p>
-              <a href="javascript:void(0)" class="ud-feature-link">
+              <a href="/sawah" class="ud-feature-link">
                 Selengkapnya <i class="lni lni-arrow-right"></i>
               </a>
             </div>
